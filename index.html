@@ -213,9 +213,12 @@
         {
             string[indexOfNew--] = string[indexOfOriginal];
         }
-        --indexOfOriginal;
+        --indexOfOriginal;  #因为无论是否遇到空格，原始串都需要向前移动，所以不能仅在else里面进行减法
     }
-}</code></pre>
+}</code></pre><hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>string[indexOfNew–]  先赋值，再–。即</p>
+<pre><code>string[indexOfNew] = string[indexOfOriginal];
+indexOfNew--；</code></pre>
       
 
       
