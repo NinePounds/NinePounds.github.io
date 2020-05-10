@@ -152,6 +152,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-剑指offer——字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">剑指offer——字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2020-05-10T01:41:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>字符串是由若干字符组成的序列，C/C++中的每个字符都以 \0 作为结尾，这样我们就能很方便的找到字符串的尾部。<br>当我们声明一个长度为10的字符数组，实际上它的长度为11个字节。</p>
+<hr>
+<h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h2><p>在网络编程中如果哦URL参数中含有特殊字符如空格等，可能导致服务器端无法获得正确的参数值。所以需要将特殊符号转换成服务器可以识别的字符。<br>空格的ASCII码是32，即十六进制的0x20，因此空格被替换成”%20”。</p>
+<h3 id="第一种方法–从头到尾"><a href="#第一种方法–从头到尾" class="headerlink" title="第一种方法–从头到尾"></a>第一种方法–从头到尾</h3><p>从头到尾扫描字符串，有空格则替换然后把空格后面的字符都后移2字节，否则就有两个字符被覆盖。<br>假设字符串长度是n,对每个空格字符需要移动后面O(n)个字符，总的时间效率是O(n的平方)。</p>
+<h3 id="第二种方法–从尾到头"><a href="#第二种方法–从尾到头" class="headerlink" title="第二种方法–从尾到头"></a>第二种方法–从尾到头</h3><p>先遍历一遍字符串统计空格长度，经过计算可以得到替换后字符串的长度然后从未到头依次替换。因为所有字符只需复制（移动）一次，所以这个算法的时间效率是O(n)。<br>        void ReplaceBlank(char string[], int length)<br>        {<br>            if(string == nullptr || length &lt;= 0)</p>
+<pre><code>        return;
+
+    int originallLength = 0;
+    int numberOfBlank = 0;
+    int i = 0;
+    while(string[i] != &apos;\0&apos;)
+    {
+        ++originallLength;       #统计字符串长度
+
+        if(string[i] != &apos; &apos;)
+
+        ++numberOfBlank;        #统计空格个数
+
+        i++;
+    }
+    int newLength = originallLength + numberOfBlank*2;
+    if(newLength &gt; length) #length为字符串数组string 的总容量
+        return;
+    int indexOfOriginal = originallLength;
+    int indexOfNew = newLength;
+    while(indexOfOriginal &gt;= 0 &amp;&amp; indexOfNew &gt; indexOfOriginal)
+    {
+        if(string[indexOfOriginal] = &apos; &apos;)
+        {
+            string[indexOfNew--] = &apos;0&apos;;
+            string[indexOfNew--] = &apos;2&apos;;
+            string[indexOfNew--] = &apos;%&apos;;
+        }
+        else
+        {
+            string[indexOfNew--] = string[indexOfOriginal];
+        }
+        --indexOfOriginal;
+    }
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Window下使用Hexo-GitHub搭建个人免费博客教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
