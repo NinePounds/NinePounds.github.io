@@ -16,7 +16,7 @@
 <meta property="og:description" content="序字符串是由若干字符组成的序列，C&#x2F;C++中的每个字符都以 \0 作为结尾，这样我们就能很方便的找到字符串的尾部。当我们声明一个长度为10的字符数组，实际上它的长度为11个字节。  替换空格在网络编程中如果哦URL参数中含有特殊字符如空格等，可能导致服务器端无法获得正确的参数值。所以需要将特殊符号转换成服务器可以识别的字符。空格的ASCII码是32，即十六进制的0x20，因此空格被替换成”%20”">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-10T01:41:22.000Z">
-<meta property="article:modified_time" content="2020-05-10T02:27:04.063Z">
+<meta property="article:modified_time" content="2020-05-10T03:12:22.197Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -178,8 +178,12 @@
 <hr>
 <h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h2><p>在网络编程中如果哦URL参数中含有特殊字符如空格等，可能导致服务器端无法获得正确的参数值。所以需要将特殊符号转换成服务器可以识别的字符。<br>空格的ASCII码是32，即十六进制的0x20，因此空格被替换成”%20”。</p>
 <h3 id="第一种方法–从头到尾"><a href="#第一种方法–从头到尾" class="headerlink" title="第一种方法–从头到尾"></a>第一种方法–从头到尾</h3><p>从头到尾扫描字符串，有空格则替换然后把空格后面的字符都后移2字节，否则就有两个字符被覆盖。<br>假设字符串长度是n,对每个空格字符需要移动后面O(n)个字符，总的时间效率是O(n的平方)。</p>
-<h3 id="第二种方法–从尾到头"><a href="#第二种方法–从尾到头" class="headerlink" title="第二种方法–从尾到头"></a>第二种方法–从尾到头</h3><p>先遍历一遍字符串统计空格长度，经过计算可以得到替换后字符串的长度然后从未到头依次替换。因为所有字符只需复制（移动）一次，所以这个算法的时间效率是O(n)。<br>        void ReplaceBlank(char string[], int length)<br>        {<br>            if(string == nullptr || length &lt;= 0)</p>
-<pre><code>        return;
+<h3 id="第二种方法–从尾到头"><a href="#第二种方法–从尾到头" class="headerlink" title="第二种方法–从尾到头"></a>第二种方法–从尾到头</h3><p>先遍历一遍字符串统计空格长度，经过计算可以得到替换后字符串的长度然后从未到头依次替换。因为所有字符只需复制（移动）一次，所以这个算法的时间效率是O(n)。</p>
+<pre><code>void ReplaceBlank(char string[], int length)
+{
+    if(string == nullptr || length &lt;= 0)
+
+        return;
 
     int originallLength = 0;
     int numberOfBlank = 0;
