@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>NinePounds的博客</title>
+  <title>剑指offer——链表（基础） | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NinePounds的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="链表基础复习：数组链表和数组的作用相同。都是用来存储数据。因此，使用数组和链表进行类比是一个不错的选择。 数组是很常用的数据结构。在多数语言中，我们都可以很容易的声明一个数组类型，并使用 [] 符号取出其中的元素。 C 语言的示例如下： void ArrayTest(void) {     int fuc[100]; &#x2F;&#x2F; 定义数组      &#x2F;&#x2F; 数组操作     fuc[0] &#x3D; 1;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指offer——链表（基础）">
+<meta property="og:url" content="http://yoursite.com/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
+<meta property="og:description" content="链表基础复习：数组链表和数组的作用相同。都是用来存储数据。因此，使用数组和链表进行类比是一个不错的选择。 数组是很常用的数据结构。在多数语言中，我们都可以很容易的声明一个数组类型，并使用 [] 符号取出其中的元素。 C 语言的示例如下： void ArrayTest(void) {     int fuc[100]; &#x2F;&#x2F; 定义数组      &#x2F;&#x2F; 数组操作     fuc[0] &#x3D; 1;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-11T03:44:38.000Z">
+<meta property="article:modified_time" content="2020-05-11T03:53:18.104Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -150,87 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-剑指offer———树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-剑指offer——链表-基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/">剑指offer———树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2020-05-11T03:54:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二叉树基础知识总结"><a href="#二叉树基础知识总结" class="headerlink" title="二叉树基础知识总结"></a>二叉树基础知识总结</h2><p>树是一种数据结构，它是由n（n&gt;=1）个有限结点组成一个具有层次关系的集合。</p>
-<p>树具有的特点有：</p>
-<p>（1）每个结点有零个或多个子结点</p>
-<p>（2）没有父节点的结点称为根节点</p>
-<p>（3）每一个非根结点有且只有一个父节点</p>
-<p>（4）除了根结点外，每个子结点可以分为多个不相交的子树。</p>
-<p>树的基本术语有：</p>
-<h2 id="若一个结点有子树，那么该结点称为子树根的“双亲”，子树的根称为该结点的“孩子”。有相同双亲的结点互为“兄弟”。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。"><a href="#若一个结点有子树，那么该结点称为子树根的“双亲”，子树的根称为该结点的“孩子”。有相同双亲的结点互为“兄弟”。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。" class="headerlink" title="若一个结点有子树，那么该结点称为子树根的“双亲”，子树的根称为该结点的“孩子”。有相同双亲的结点互为“兄弟”。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。"></a>若一个结点有子树，那么该结点称为子树根的“双亲”，子树的根称为该结点的“孩子”。有相同双亲的结点互为“兄弟”。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。</h2><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>二叉树是每个结点最多有两个子树的树结构。它有五种基本形态：二叉树可以是空集；根可以有空的左子树或右子树；或者左、右子树皆为空。</p>
-<p>具体公式详见：<a href="https://blog.csdn.net/xiaoquantouer/article/details/65631708" target="_blank" rel="noopener">https://blog.csdn.net/xiaoquantouer/article/details/65631708</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-剑指offer——链表-基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/">剑指offer——链表（基础）</a>
+    <h1 class="article-title" itemprop="name">
+      剑指offer——链表（基础）
     </h1>
   
 
@@ -289,6 +220,27 @@ public:
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -296,16 +248,84 @@ public:
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          剑指offer———树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">剑指offer——字符串</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -325,405 +345,14 @@ public:
 
 
 
-
   
-    <article id="post-剑指offer——字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">剑指offer——字符串</a>
-    </h1>
   
 
-        
-        <a href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2020-05-10T01:41:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>字符串是由若干字符组成的序列，C/C++中的每个字符都以 \0 作为结尾，这样我们就能很方便的找到字符串的尾部。<br>当我们声明一个长度为10的字符数组，实际上它的长度为11个字节。</p>
-<hr>
-<h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h2><p>在网络编程中如果哦URL参数中含有特殊字符如空格等，可能导致服务器端无法获得正确的参数值。所以需要将特殊符号转换成服务器可以识别的字符。<br>空格的ASCII码是32，即十六进制的0x20，因此空格被替换成”%20”。</p>
-<h3 id="第一种方法–从头到尾"><a href="#第一种方法–从头到尾" class="headerlink" title="第一种方法–从头到尾"></a>第一种方法–从头到尾</h3><p>从头到尾扫描字符串，有空格则替换然后把空格后面的字符都后移2字节，否则就有两个字符被覆盖。<br>假设字符串长度是n,对每个空格字符需要移动后面O(n)个字符，总的时间效率是O(n的平方)。</p>
-<h3 id="第二种方法–从尾到头"><a href="#第二种方法–从尾到头" class="headerlink" title="第二种方法–从尾到头"></a>第二种方法–从尾到头</h3><p>先遍历一遍字符串统计空格长度，经过计算可以得到替换后字符串的长度然后从未到头依次替换。因为所有字符只需复制（移动）一次，所以这个算法的时间效率是O(n)。</p>
-<pre><code>void ReplaceBlank(char string[], int length)
-{
-    if(string == nullptr || length &lt;= 0)
-
-        return;
-
-    int originallLength = 0;
-    int numberOfBlank = 0;
-    int i = 0;
-    while(string[i] != &apos;\0&apos;)
-    {
-        ++originallLength;       #统计字符串长度
-
-        if(string[i] != &apos; &apos;)
-
-        ++numberOfBlank;        #统计空格个数
-
-        i++;
-    }
-    int newLength = originallLength + numberOfBlank*2;
-    if(newLength &gt; length) #length为字符串数组string 的总容量
-        return;
-    int indexOfOriginal = originallLength;
-    int indexOfNew = newLength;
-    while(indexOfOriginal &gt;= 0 &amp;&amp; indexOfNew &gt; indexOfOriginal)
-    {
-        if(string[indexOfOriginal] = &apos; &apos;)
-        {
-            string[indexOfNew--] = &apos;0&apos;;
-            string[indexOfNew--] = &apos;2&apos;;
-            string[indexOfNew--] = &apos;%&apos;;
-        }
-        else
-        {
-            string[indexOfNew--] = string[indexOfOriginal];
-        }
-        --indexOfOriginal;  #因为无论是否遇到空格，原始串都需要向前移动，所以不能仅在else里面进行减法
-    }
-}</code></pre><hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>string[indexOfNew–]  先赋值，再–。即</p>
-<pre><code>string[indexOfNew] = string[indexOfOriginal];
-indexOfNew--；</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Window下使用Hexo-GitHub搭建个人免费博客教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/Window%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">Windows下使用Hexo+GitHub搭建个人免费博客教程</a>
-    </h1>
   
 
-        
-        <a href="/2020/05/09/Window%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-05-09T01:55:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近些年来很多用户都喜欢使用GitHub Pages来搭建Hexo静态博客网站，其最吸引人的莫过于完全免费使用，并且非常稳定。虽然搭建时比较麻烦，有点折腾，但是配置完成后，基本不需要操心维护的事，甚至放了几年都忘记了，打开来看文章依然还在。<br>在搭建个人博客过程中浏览了许多相关文章和视频，今天就来总结一下在Windows下使用Hexo+GitHub搭建个人免费博客的方法。因为之前多相关知识了解不多，所以本文章仅为个人的经验。</p>
-<hr>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>首先要清楚的是什么是GitHub Pages，GitHub Pages是由GitHub官方提供的一种免费的静态站点托管服务，让我们可以在GitHub仓库里托管和发布自己的静态网站页面。<br>而Hexo是一个快速、简洁且高效的静态博客框架，它基于Node.js运行，可以将我们撰写的Markdown文档解析渲染成静态的HTML网页。<br>Hexo+GitHub文章发布原理就是在本地撰写Markdown格式文章后，通过Hexo解析文档，渲染生成具有主题样式的HTML静态网页，再推送到GitHub上完成博文的发布。</p>
-<hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>输入代码时，核对准确，最好切换成英文输入法；</li>
-<li>将文中的 “用户名” 和 “邮箱” 替换为自己的 GitHub 账户名和绑定的邮箱；</li>
-<li>统一使用 Git Bash 进行操作（支持 Win、Mac）；</li>
-</ul>
-<hr>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>Hexo 基于 Node.js，搭建过程中还需要使用 npm（Node.js 已带） 和 git，因此先搭建本地操作环境，安装 Node.js 和 Git。<br>• Node.js：<a href="https://nodejs.org/zh-cn" target="_blank" rel="noopener">https://nodejs.org/zh-cn</a><br>• Git：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
-<hr>
-<h2 id="链接GitHub"><a href="#链接GitHub" class="headerlink" title="链接GitHub"></a>链接GitHub</h2><p>使用邮箱注册 GitHub 账户，选择免费账户（Free），并完成邮件验证。右键 -&gt; Git Bash Here，设置用户名和邮箱：<br>    git config –global user.name “你的GitHub用户名”<br>    git config –global user.email “你的GitHub邮箱”</p>
-<hr>
-<h2 id="创建SSH"><a href="#创建SSH" class="headerlink" title="创建SSH"></a>创建SSH</h2><ul>
-<li>输入 ssh-keygen -t rsa -C “GitHub 邮箱”，引号里面的内容输入你的邮箱地址，然后回车，会提示你文件保存的路径，这时候按回车键确认然后会提示你输入密码，输入即可（输入密码是看不到的），然后会确认输入一次，就可以在刚刚的路径看到生成了两个文件，一个是id_rsa，另一个是id_rsa.pub，用notepadd++打开id_rsa.pub然后选中里面的全部内容，复制下来。</li>
-<li>登录github，点击头像可以看到setting选项，点击进入然后可以看到左边有一个SSH and GPG keys选项点击就可以看到以下界面，点击New SSH</li>
-<li>Title随便填写，主要是为了方便管理密钥然后把刚刚拷贝的内容粘贴到Key里面去然后点击Add SSH key到此，Github上面的SSH配置就算完成了</li>
-</ul>
-<hr>
-<h2 id="创建本地仓库与Github同步"><a href="#创建本地仓库与Github同步" class="headerlink" title="创建本地仓库与Github同步"></a>创建本地仓库与Github同步</h2><p>GitHub 主页右上角加号 -&gt; New repository：<br>• Repository name 中输入 用户名.github.io<br>• 勾选 “Initialize this repository with a README”<br>• Description 选填<br>填好后点击 Create repository 创建。博客地址为：https://用户名.github.io</p>
-<hr>
-<h2 id="本地安装Hexo博客程序"><a href="#本地安装Hexo博客程序" class="headerlink" title="本地安装Hexo博客程序"></a>本地安装Hexo博客程序</h2><p>新建一个文件夹用来存放 Hexo 的程序文件，如 Hexo-Blog。打开该文件夹，右键 -&gt; Git Bash Here。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>使用 npm 一键安装 Hexo 博客程序：</p>
-<pre><code>$ npm install -g hexo-cli</code></pre><p>敲完回车可能没有任何提示，请一定要耐心等待安装成功后，可以输入以下命令测试以下Hexo是否安装成功。</p>
-<pre><code>$ hexo version</code></pre><p>如果能看到hexo的版本号信息，就表示安装成功了接下来，进入到我们刚刚创建的文件夹，右键打开Git Bash Here然后依次输入以下命令：</p>
-<pre><code>$ hexo init     #初始化
-$ npm install   #安装组件
-$ hexo g        #生成界面
-$ hexo s        #启动预览</code></pre><p>这时候在浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就可以看到hexo已经成功生成了博客，当然这只是我们本地可以看到的。<br>Tips：如果出现页面加载不出来，可能是端口被占用了。Ctrl+C 关闭服务器，运行 hexo server -p 5000 更改端口号后重试。并且不要按 ctrl + c 复制网站名。</p>
-<hr>
-<h2 id="配置Hexo到Github"><a href="#配置Hexo到Github" class="headerlink" title="配置Hexo到Github"></a>配置Hexo到Github</h2><p>本地博客测试成功后，就是上传到 GitHub 进行部署，使其能够在网络上访问。找到我们刚刚创建的文件夹，在里面找到_config.yml文件，用notepad++打开，直接拖到最后，可以看到</p>
-<pre><code>deploy:
-  type:</code></pre><p>改成以下，特别注意，在：的后面是有一个空格的，千万要小心，不然后出错的，其中yourname即在github上面的用户名</p>
-<pre><code>deploy:  
-  type: git
-  repository: http://github.com/yourname/yourname.github.io.git
-  branch: master</code></pre><p>保存后，然后在当前文件夹打开Git Bash Here</p>
-<pre><code>$ hexo clean
-$ hexo g
-$ hexo d</code></pre><p>如果出现以下异常</p>
-<pre><code>ERROR Deployer not found: git</code></pre><p>尝试输入以下命令，然后重新执行刚刚的两条命令</p>
-<pre><code>$ npm install hexo-deployer-git --save</code></pre><p>这时候如果弹出一个对话框，输入在guthub上面的用户名和密码即可这时候我们就可以在浏览器输入<a href="http://yourname.github.io（yourname替换成github上的名称）就可以看到博客已经搭建成功了。" target="_blank" rel="noopener">http://yourname.github.io（yourname替换成github上的名称）就可以看到博客已经搭建成功了。</a></p>
-<hr>
-<h2 id="绑定域名（可选）"><a href="#绑定域名（可选）" class="headerlink" title="绑定域名（可选）"></a>绑定域名（可选）</h2><p>博客搭建完成使用的是 GitHub 的子域名（用户名.<a href="http://github.io），我们可以为" target="_blank" rel="noopener">http://github.io），我们可以为</a> Hexo 博客绑定自己的域名替换 GitHub 域名，更加个性化和专业，也利于 SEO。可以使用 Namesilo 进行注册，便宜好用没啥套路，使用优惠码 okoff 优惠一美元，com 域名大概 50 块一年。</p>
-<h3 id="域名注册和解析"><a href="#域名注册和解析" class="headerlink" title="域名注册和解析"></a>域名注册和解析</h3><p>域名注册和解析教程：Namesilo 域名购买及使用教程按上面教程注册并解析域名，在 DNS 设置部分，删除自带的记录，然后添加 CNAME 记录将 www 域名解析指向 用户名.github.io。</p>
-<h3 id="绑定域名到-Hexo-博客"><a href="#绑定域名到-Hexo-博客" class="headerlink" title="绑定域名到 Hexo 博客"></a>绑定域名到 Hexo 博客</h3><p>进入本地博客文件夹的 source 目录，打开记事本，里面输入自己的域名，如 <a href="http://www.example.com，保存名称为" target="_blank" rel="noopener">http://www.example.com，保存名称为</a> “CNAME”，格式为 “所有文件”（无 .txt 后缀）。清除缓存等文件并重新发布网站：</p>
-<pre><code>hexo clean   # 清除缓存文件等
-hexo g       # 生成页面
-hexo s       # 启动预览</code></pre><p>现在就可以使用自己的域名访问 Hexo 博客了。</p>
-<h3 id="开启-HTTPS"><a href="#开启-HTTPS" class="headerlink" title="开启 HTTPS"></a>开启 HTTPS</h3><p>配置自己的域名后，需要我们手动开启 HTTPS。打开博客所在 GitHub 仓库，Settings -&gt; 下拉找到 GitHub Pages -&gt; 勾选 Enforce HTTPS。<br>HTTPS 证书部署成功需要一定时间，等大概几分钟再访问域名，就可以看到域名前面的小绿锁了，HTTPS 配置完成！</p>
-<hr>
-<h2 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客"></a>创建个人博客</h2><p>当以上工作全部做完后就可以创建属于自己的个人博客啦。进入博客所在目录，右键打开 Git Bash Here，创建博文：</p>
-<pre><code>hexo n &quot;My New Post&quot;</code></pre><p>然后 source 文件夹中会出现一个 My New Post.md 文件，就可以使用 Markdown 编辑器在该文件中撰写文章了。</p>
-<p>写完后运行下面代码将文章渲染并部署到 GitHub Pages 上完成发布。以后每次发布文章都是这两条命令。</p>
-<pre><code>hexo g   # 生成页面
-hexo d   # 部署发布</code></pre><p>也可以不使用命令自己创建 .md 文件，只需在文件开头手动加入如下格式 Front-matter 即可，写完后运行 hexo g 和 hexo d 发布。</p>
-<pre><code>---
-title: Hello World # 标题
-date: 2019/3/26 hh:mm:ss # 时间
-categories: # 分类
-- Diary
-tags: # 标签
-- PS3
-- Games
----</code></pre><hr>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>我们可以在在 Themes | Hexo 选择一个喜欢的主题，比如 NexT，进入网站目录打开 Git Bash Here 下载主题：</p>
-<pre><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></pre><p>然后修改 _config.yml 中的 theme 为新主题名称 next，发布。（有的主题需要将 _config.yml 替换为主题自带的，参考主题说明。）</p>
-<hr>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre><code>hexo new &quot;name&quot;       # 新建文章
-hexo new page &quot;name&quot;  # 新建页面
-hexo g                # 生成页面
-hexo d                # 部署
-hexo g -d             # 生成页面并部署
-hexo s                # 本地预览
-hexo clean            # 清除缓存和已生成的静态文件
-hexo help             # 帮助</code></pre><hr>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="设置网站图标"><a href="#设置网站图标" class="headerlink" title="设置网站图标"></a>设置网站图标</h3><p>进入 themes/主题 文件夹，打开 _config.yml 配置文件，找到 favicon 修改，一般格式为：favicon: 图标地址。（不同主题可能略有差别）</p>
-<h3 id="修改并部署后没有效果"><a href="#修改并部署后没有效果" class="headerlink" title="修改并部署后没有效果"></a>修改并部署后没有效果</h3><p>使用 hexo clean 清理后重新部署。</p>
-<h3 id="npm下载速度慢，甚至完全没反应"><a href="#npm下载速度慢，甚至完全没反应" class="headerlink" title="npm下载速度慢，甚至完全没反应"></a>npm下载速度慢，甚至完全没反应</h3><p>使用 npm 安装程序等待很久也没反应，或者下载速度很慢，可以更换 npm 源为国内 npm 镜像。<br>临时更换方法：在 npm 安装命令后面加上：</p>
-<pre><code>--registry https://registry.npm.taobao.org </code></pre><hr>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Hexo 是一种纯静态的博客，我们必须要在本地完成文章的编辑再部署到 GitHub 上，依赖于本地环境。不能像 WordPress 或 Typecho 那样的动态博客一样能直接在浏览器中完成撰文和发布。可以说是一种比较极客的写博客方式，但是优势也是明显的——免费稳定省心，比较适合爱折腾研究的用户，或者没有在线发文需求的朋友。</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://zhuanlan.zhihu.com/p/60578464" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/60578464</a><br>[2] <a href="https://www.jianshu.com/p/189fd945f38f" target="_blank" rel="noopener">https://www.jianshu.com/p/189fd945f38f</a><br>[3] <a href="https://www.jianshu.com/p/956c44c87fb1" target="_blank" rel="noopener">https://www.jianshu.com/p/956c44c87fb1</a><br>[4] <a href="https://www.jianshu.com/p/343934573342" target="_blank" rel="noopener">https://www.jianshu.com/p/343934573342</a><br>[5] <a href="https://www.bilibili.com/video/BV1Yb411a7ty?from=search&amp;seid=12652976378495442952" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1Yb411a7ty?from=search&amp;seid=12652976378495442952</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/09/Window%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
   
 
-        
-        <a href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-05-06T03:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  终于有自己的博客了，有点兴奋。这篇博客主要想把之前实习的内容与想法记录下来。<br>  后续应该会总结一下windows创建个人博客的工具与注意事项。</p>
-<h2 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h2><p>19年的三月份投了华为的勇敢星实习，五月份确定录取七月份入职。虽然最终没有转正成功（感觉有点迷，师傅说自己表现不错让我别担心，结果最后被刷了。同学的主管说他被录取了高兴地回到了学校，结果回到学校告诉他没通过）。<br>但还是想总结一下经验，为以后做准备。</p>
-<hr>
-<h2 id="实习内容与想法"><a href="#实习内容与想法" class="headerlink" title="实习内容与想法"></a>实习内容与想法</h2><p>主要工作是Log解析工具的开发，包括两个部分，一个是交互界面的设计还有一个是Log解析算法的开发。交互界面用python和pyqt5开发完成。解析算法用提供的解析规则完成相应的解析算法。工具的主要功能是用户可以自行选择所要分析的Log文件，在Log文件选择完成之后可以选择所要分析的问题类型，运行工具即可得到分析结论，判断依据等输出内容。开发此工具主要有两方面的价值，第一个是可以提高工作效率。与相关工作人员交流后发现人工正常处理一单问题的时间大约是十分钟，那用工具解析只需要两分钟，可以将工作效率提升80%。第二个价值是可以减少对工作人员能力与经验的依赖，即使没有分析Log问题的相关经验也可以将问题分析的很准确。<br>界面与程序架构设计都是自己独立完成，但是并不是自己随意设计。会与工作人员进行交流，确定一个较为全面的设计方案。例如问题类型的选择：我的想法是弹出子窗口，在子窗口内进行选择确认。但是交流后发现这种方案可能不是很直观，操作起来较为繁琐。最后确定了一种问题类型与问题子类列表关联的方案。选择相应的问题类型，问题子类即可自动更新。<br>缺陷：工具目前是有缺陷的。主要问题发生在Log解压文件的选取模块。因为用户的压缩文件路径繁琐，所存放文件夹内部较为复杂，导致处理起来较为麻烦。我采用的方案是将解压文件复制到工具所在文件夹。此方案虽然有效解决了以上两个问题，但是复制文件需要相应时间，其实相当于变相延长了工具解析的时间。这也是工具目前存在的缺陷。后面的计划是将所选文件解压到同命名文件夹。即可有效解决以上问题。<br>覆盖率:覆盖是指工具分析结论与人工分析结论一致。目前工具覆盖率是80%多，没能覆盖到的问题主要是解析规则的缺失，或者一些关键字没能有效提取。解析规则缺失的解决办法是重新确定解析规则，并且优化相应的解析算法。关键字没能有效提取解决方案，重新检验相应算法的有效性，更新优化。那其实又引出了另一个问题，工具的面向对象。其实平均一个项目会有1000多单问题，这些问题只有30%是需要Log解析的，工具主要的面向对象就是这些问题。在这30%中也可以大致分为两大类，一类是有明确解析规则的，这类问题非常适用于该工具。工具可以直接给出分析结论。还有一类是没有较为明确的解析规则，这类问题也可以使用该工具，工具可以给出相应的判断依据。没有判断逻辑和解析规则的不是该工具考虑的范围。<br>工具有效性：解析工具只是中间环节的本地化产物。最终目的是要将工具上训练成熟的Log解析算法集成的smartlog网站上。在处理问题时先经过相应算法过滤一遍。有明确结论的就可以不用继续分析，剩下算法没有包含到的再由人工处理。<br>而解析工具在训练算法之后不是没有用处了。无论是界面交互还是解析算法都是解耦的，而且问题类型的分析按照模块化独立实现。如果想继续扩充解析算法只需要添加子类型算法进行调用即可，不用掌握整个程序的设计架构。而且目前工具是特性问题的解析，其实只要有明确判断逻辑和解析规则的都可以使用该工具进行分析。此工具有很大的利用价值。<br>后记：其实一个人开发维护还是比较费时的，可以将此工具开源出去。只要该工具可以处理的问题大家都可以进行更新和版本迭代。并且此工具的兼容性将会越来越强，因为无论是之前的分析问题还是之后要开发的算法，该工具都可以处理分析。<br>理想情况为：该工具不仅仅是一个只能分析特性问题的本地化工具，而是可以处理该工具能处理的任何问题。此工具可以作为一个问题集成库，能做到只要有问题人们就会利用该工具进行分析查询，我认为这是此工具最成功状态，也可以说是最终形态。</p>
-<hr>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>第一次发博客没什么经验，排版与格式应该会在后续博客更新中持续优化。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/06/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-05T17:17:09.901Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -746,8 +375,8 @@ hexo help             # 帮助</code></pre><hr>
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
