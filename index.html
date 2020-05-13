@@ -152,6 +152,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-剑指offer——斐波那锲数列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/">剑指offer——斐波那锲数列</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-05-13T04:10:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="斐波那契数列与黄金分割比"><a href="#斐波那契数列与黄金分割比" class="headerlink" title="斐波那契数列与黄金分割比"></a>斐波那契数列与黄金分割比</h2><p>斐波那契数列的由来是“兔子问题”。</p>
+<p>从中总结的规律就是：</p>
+<p>（1）每个月小兔子数 = 上个月的大兔子数；</p>
+<p>（2）每个月的大兔子数 = 上个月的大兔子数 + 上个月的小兔子数；</p>
+<p>（3）每个月的大兔子数 = 上个月的大兔子数 + 上上个月的大兔子数。</p>
+<p>1， 1， 2， 3， 5， 8， 13， 21， 34， 55，89，,144……</p>
+<p>即前两项是1， 1，后面的每一项是前面两项的和，这就是斐波那契数列。提到数列，很自然想到求极限。所以，这里斐波那契数列后一项与前一项比值的极限就是二分之根号五减一，约等于0.618.这就是黄金分割比。</p>
+<hr>
+<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。</p>
+<pre><code>class Solution {
+public:
+    int Fibonacci(int n) {
+        int a[2] = {0,1};
+        if(n &lt; 2)
+            return a[n];
+        int fibNone = 1;
+        int fibNtwo = 0;
+        int fibN = 0;
+        for (int i = 2 ; i&lt;=n; i++)
+        {
+            fibN = fibNtwo + fibNone;
+            fibNtwo = fibNone;
+            fibNone = fibN;
+        }
+        return fibN;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-剑指offer——栈和队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
