@@ -196,19 +196,19 @@
          1000 0010  =  -2</code></pre><p>很显然1-1=0，而用原码进行计算得出的结果却相差甚远！</p>
 <h3 id="二、为什么不以反码形式存储？"><a href="#二、为什么不以反码形式存储？" class="headerlink" title="二、为什么不以反码形式存储？"></a>二、为什么不以反码形式存储？</h3><p>既然原码不适合作为计算机的存储方式，人们在解决这个问题的过程中又提出了反码的概念</p>
 <p>求反码：</p>
-<pre><code>1.求原码
-
-2.符号为不变，其他位取反
-
-注意：正数原码、反码一样!</code></pre><p>接下来我们检验一下1 - 1：</p>
+<p>1.求原码</p>
+<p>2.符号为不变，其他位取反</p>
+<p>注意：正数原码、反码一样!</p>
+<p>接下来我们检验一下1 - 1：</p>
 <pre><code>   1：    0000 0001
 
 -  1：   1111 1110
 
-            1111 1111 -&gt;1000 000(转换为原码，因为原码是站在用户角度的) = -0
+            1111 1111 -&gt;1000 000(转换为原码，因为原码是站在用户角度的) = -0</code></pre><p>不难可能出反码已经解决的正负数相加结果不正确的问题</p>
+<p>然后我们再检验+0、-0</p>
+<pre><code>+0  0000 0000
 
-  不难可能出反码已经解决的正负数相加结果不正确的问题</code></pre><p>   然后我们再检验+0、-0<br>              +0  0000 0000</p>
-<pre><code>-0  1111 1111</code></pre><p>由此看出，反码并没有解决0有两种形式的问题</p>
+-0  1111 1111</code></pre><p>由此看出，反码并没有解决0有两种形式的问题</p>
 <p>反码存储会引发1个问题：</p>
 <p>0有两个存储方式</p>
 <h3 id="三、补码存储"><a href="#三、补码存储" class="headerlink" title="三、补码存储"></a>三、补码存储</h3><p>  在反码的基础上，人们有提出了补码的概念</p>
@@ -244,7 +244,7 @@ public:
     }
 };</code></pre><p>思路：如果一个整数不为0，那么这个整数至少有一位是1。如果我们把这个整数减1，那么原来处在整数最右边的1就会变为0，原来在1后面的所有的0都会变成1(如果最右边的1后面还有0的话)。其余所有位将不会受到影响。<br>举个例子：一个二进制数1100，从右边数起第三位是处于最右边的一个1。减去1后，第三位变成0，它后面的两位0变成了1，而前面的1保持不变，因此得到的结果是1011.我们发现减1的结果是把最右边的一个1开始的所有位都取反了。这个时候如果我们再把原来的整数和减去1之后的结果做与运算，从原来整数最右边一个1那一位开始所有位都会变成0。如1100&amp;1011=1000.也就是说，把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。<br>并且负数运算也是一样的，因此计算机采用补码存储！</p>
 <hr>
-<p>##参考文献<br>[1] <a href="https://blog.csdn.net/qq_41727218/article/details/79521759" target="_blank" rel="noopener">https://blog.csdn.net/qq_41727218/article/details/79521759</a><br>[2] <a href="https://www.cnblogs.com/spring-hailong/p/6071245.html" target="_blank" rel="noopener">https://www.cnblogs.com/spring-hailong/p/6071245.html</a><br>[3] <a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://blog.csdn.net/qq_41727218/article/details/79521759" target="_blank" rel="noopener">https://blog.csdn.net/qq_41727218/article/details/79521759</a><br>[2] <a href="https://www.cnblogs.com/spring-hailong/p/6071245.html" target="_blank" rel="noopener">https://www.cnblogs.com/spring-hailong/p/6071245.html</a><br>[3] <a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html</a></p>
 
       
 
@@ -312,11 +312,10 @@ public:
 <h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>二分查找的基本思想是：设R[low..high]是当前的查找区间</p>
 <p>（1）首先确定该区间的中点位置</p>
 <p>（2）然后将待查的K值与R[mid].key比较：若相等，则查找成功并返回此位置，否则须确定新的查找区间，继续二分查找，具体方法如下：</p>
-<pre><code>①  若R[mid].key&gt;K，则由表的有序性可知R[mid..n].keys均大于K，因此若表中存在关键字等于K的结点，则该结点必定是在位置mid左边的子表R[1..mid-1]中，故新的查找区间是左子表R[1..mid-1]。
-
-②  若R[mid].key&lt;K，则要查找的K必在mid的右子表R[mid+1..n]中，即新的查找区间是右子表R[mid+1..n]。下一次查找是针对新的查找区间进行的。
-
-因此，从初始的查找区间R[1..n]开始，每经过一次与当前查找区间的中点位置上的结点关键字的比较，就可确定查找是否成功，不成功则当前的查找区间就缩小一半。这一过程重复直至找到关键字为K的结点，或者直至当前的查找区间为空(即查找失败)时为止。</code></pre><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>  二分查找只适用顺序存储结构。</p>
+<p>①  若R[mid].key&gt;K，则由表的有序性可知R[mid..n].keys均大于K，因此若表中存在关键字等于K的结点，则该结点必定是在位置mid左边的子表R[1..mid-1]中，故新的查找区间是左子表R[1..mid-1]。</p>
+<p>②  若R[mid].key&lt;K，则要查找的K必在mid的右子表R[mid+1..n]中，即新的查找区间是右子表R[mid+1..n]。下一次查找是针对新的查找区间进行的。</p>
+<p>因此，从初始的查找区间R[1..n]开始，每经过一次与当前查找区间的中点位置上的结点关键字的比较，就可确定查找是否成功，不成功则当前的查找区间就缩小一半。这一过程重复直至找到关键字为K的结点，或者直至当前的查找区间为空(即查找失败)时为止。</p>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>  二分查找只适用顺序存储结构。</p>
 <h3 id="二分查找算法"><a href="#二分查找算法" class="headerlink" title="二分查找算法"></a>二分查找算法</h3><pre><code>/*折半查找*/
 
 int Binary_Search(int a*,int n,int key)
@@ -351,10 +350,9 @@ int Binary_Search(int a*,int n,int key)
 
     return 0;
 
-}</code></pre><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>二分查找的优点：</p>
-<pre><code>折半查找的时间复杂度为O(logn)，远远好于顺序查找的O(n)。</code></pre><p>二分查找的缺点：</p>
-<pre><code>虽然二分查找的效率高，但是要将表按关键字排序。而排序本身是一种很费时的运算。既使采用高效率的排序方法也要花费O(nlgn)的时间。</code></pre><h3 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h3><p> 二分查找只适用顺序存储结构。为保持表的有序性，在顺序结构里插入和删除都必须移动大量的结点。因此，二分查找特别适用于那种一经建立就很少改动、而又经常需要查找的线性表。</p>
-<p> 对那些查找少而又经常需要改动的线性表，可采用链表作存储结构，进行顺序查找。链表上无法实现二分查找。</p>
+}</code></pre><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>二分查找的优点：折半查找的时间复杂度为O(logn)，远远好于顺序查找的O(n)。</p>
+<p>二分查找的缺点：虽然二分查找的效率高，但是要将表按关键字排序。而排序本身是一种很费时的运算。既使采用高效率的排序方法也要花费O(nlgn)的时间。</p>
+<h3 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h3><p>二分查找只适用顺序存储结构。为保持表的有序性，在顺序结构里插入和删除都必须移动大量的结点。因此，二分查找特别适用于那种一经建立就很少改动、而又经常需要查找的线性表。对那些查找少而又经常需要改动的线性表，可采用链表作存储结构，进行顺序查找。链表上无法实现二分查找。</p>
 <hr>
 <h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。</p>
 <pre><code>class Solution {
