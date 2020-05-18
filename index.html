@@ -152,6 +152,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数值的整数次方" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/">数值的整数次方</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" class="archive-article-date">
+  	<time datetime="2020-05-18T11:49:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>考虑问题要全面，数值包括正数负数和零，如果以最简单的方法累计相乘，则零和负数会出现问题。<br>可以使用递归的方法既全面又高效。时间复杂度为O（logn）。</p>
+<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</p>
+<p>递归方法：</p>
+<pre><code>double P(double base , unsigned int exponent)
+{
+    if(exponent == 0)
+        return 1;
+    if(exponent == 1)
+        return base;
+
+    double result = P(base , exponent &gt;&gt; 1);  //右移相当于除以二，高效
+    result *= result;
+    if(exponent&amp;1 == 1)                       //用位与运算符代替了求余运算符（%）来判断是一个奇数还是偶数
+        result *= base;
+
+    return result;    
+}
+
+
+class Solution {
+public:
+    double Power(double base, int exponent) {
+    double res = 1,curr = base;
+    int e;
+    if(exponent&gt;0)
+        e = exponent;
+    else if(exponent&lt;0)
+    {
+        if(base==0)
+            throw (&quot;分母不能为0&quot;); 
+        e = -exponent;
+    }
+    else// n==0
+        return 1;// 0的0次方
+    while(e!=0){                     
+        if((e&amp;1)==1)          //首先判断是否为奇数，当为奇数时，先使res等于base
+            res*=curr;
+        curr*=curr;// 翻倍
+        e&gt;&gt;=1;// 右移一位
+    }        
+    return exponent&gt;=0?res:(1/res);       
+    }
+};        </code></pre><p>思路：执行while时，奇数会执行两次if语句，第一次和最后一次。而偶数只在最后一次运行if。因为最后都会到1，奇数。最后0，跳出循环。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-剑指offer——位运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
