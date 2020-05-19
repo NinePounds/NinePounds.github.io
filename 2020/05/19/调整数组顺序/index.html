@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>数值的整数次方 | NinePounds的博客</title>
+  <title>调整数组顺序 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="考虑问题要全面，数值包括正数负数和零，如果以最简单的方法累计相乘，则零和负数会出现问题。可以使用递归的方法既全面又高效。时间复杂度为O（logn）。 试题给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 class Solution { public:     double Power(double base, int exponent">
+  <meta name="description" content="首先，如果不要求对应位置的话，利用如下方法可以很快得到结果。时间复杂度为O(n)。 class Solution { public:     void reOrderArray(vector&lt;int&gt; &amp;array) {         int begin &#x3D; 0;         int end &#x3D; array.size() - 1;         while(begin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数值的整数次方">
-<meta property="og:url" content="http://yoursite.com/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/index.html">
+<meta property="og:title" content="调整数组顺序">
+<meta property="og:url" content="http://yoursite.com/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
-<meta property="og:description" content="考虑问题要全面，数值包括正数负数和零，如果以最简单的方法累计相乘，则零和负数会出现问题。可以使用递归的方法既全面又高效。时间复杂度为O（logn）。 试题给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 class Solution { public:     double Power(double base, int exponent">
+<meta property="og:description" content="首先，如果不要求对应位置的话，利用如下方法可以很快得到结果。时间复杂度为O(n)。 class Solution { public:     void reOrderArray(vector&lt;int&gt; &amp;array) {         int begin &#x3D; 0;         int end &#x3D; array.size() - 1;         while(begin">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-18T11:49:52.000Z">
-<meta property="article:modified_time" content="2020-05-18T12:16:31.174Z">
+<meta property="article:published_time" content="2020-05-19T06:09:35.000Z">
+<meta property="article:modified_time" content="2020-05-19T06:20:56.624Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -154,67 +154,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数值的整数次方" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-调整数组顺序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数值的整数次方
+      调整数组顺序
     </h1>
   
 
         
-        <a href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" class="archive-article-date">
-  	<time datetime="2020-05-18T11:49:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
+        <a href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-05-19T06:09:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>考虑问题要全面，数值包括正数负数和零，如果以最简单的方法累计相乘，则零和负数会出现问题。<br>可以使用递归的方法既全面又高效。时间复杂度为O（logn）。</p>
-<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</p>
+        <p>首先，如果不要求对应位置的话，利用如下方法可以很快得到结果。时间复杂度为O(n)。</p>
 <pre><code>class Solution {
 public:
-    double Power(double base, int exponent) {
-    double res = 1,curr = base;
-    int e;
-    if(exponent&gt;0)
-        e = exponent;
-    else if(exponent&lt;0)
-    {
-        if(base==0)
-            throw (&quot;分母不能为0&quot;); 
-        e = -exponent;
-    }
-    else// n==0
-        return 1;// 0的0次方
-    while(e!=0){                     
-        if((e&amp;1)==1)          //首先判断是否为奇数，当为奇数时，先使res等于base
-            res*=curr;
-        curr*=curr;// 翻倍
-        e&gt;&gt;=1;// 右移一位
-    }        
-    return exponent&gt;=0?res:(1/res);       
-    }
-};        </code></pre><p>思路：执行while时，奇数会执行两次if语句，第一次和最后一次。而偶数只在最后一次运行if。因为最后都会到1，奇数。最后0，跳出循环。</p>
-<p>递归方法：</p>
-<pre><code>double P(double base , unsigned int exponent)
-{
-    if(exponent == 0)
-        return 1;
-    if(exponent == 1)
-        return base;
+    void reOrderArray(vector&lt;int&gt; &amp;array) {
+        int begin = 0;
+        int end = array.size() - 1;
+        while(begin &lt; end )
+        {
+            while(begin &lt; end &amp;&amp; (array[begin] &amp; 1)!=0 )
+                begin++;
 
-    double result = P(base , exponent &gt;&gt; 1);  //右移相当于除以二，高效
-    result *= result;
-    if(exponent&amp;1 == 1)                       //用位与运算符代替了求余运算符（%）来判断是一个奇数还是偶数
-        result *= base;
+            while(begin &lt; end &amp;&amp; (array[end] &amp; 1)==0 )
+                end--;
+            swap(array[end], array[begin]);
+        }
+    }
+};</code></pre><p>但是如果要求奇偶之间的相对位置不变。如[1,2,3,4,5,6,7]对应输出应该为:[1,3,5,7,2,4,6]。上述方法不适用。可以采用一下两种方法</p>
+<p>第一种是类似冒泡排序的方法，前偶后奇数就交换，但是时间复杂度较高。</p>
+<pre><code>class Solution {
+public:
+    void reOrderArray(vector&lt;int&gt; &amp;array) {
 
-    return result;    
-}</code></pre>
+        for (int i = 0; i &lt; array.size();i++)
+        {
+            for (int j = array.size() - 1; j&gt;i;j--)
+            {
+                if (array[j] % 2 == 1 &amp;&amp; array[j - 1]%2 == 0) //前偶后奇交换
+                {
+                    swap(array[j], array[j-1]);
+                }
+            }
+        }
+    }
+};</code></pre><p>第二种是利用空间换时间，重新添加一个数组，先把遍历到的奇数存入新数组，再存入偶数进新数组。但是存入负数的话可能会有些问题。</p>
+<pre><code>class Solution {
+public:
+    void reOrderArray(vector&lt;int&gt; &amp;array) {
+        vector&lt;int&gt; res;
+        for(int i = 0; i &lt; array.size(); i++)
+        {
+            if(array[i] % 2 == 1)
+                res.push_back(array[i]);
+        }
+        for(int i = 0; i &lt; array.size(); i++)
+        {
+            if(array[i] % 2 == 0)
+                res.push_back(array[i]);
+        }
+        //array.swap(res);
+        array = res;
+
+    }
+};</code></pre>
       
 
       
@@ -293,7 +305,7 @@ public:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -307,18 +319,9 @@ public:
   
 <nav id="article-nav">
   
-    <a href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          调整数组顺序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">剑指offer——位运算</div>
+    <a href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数值的整数次方</div>
       <i class="icon-circle-right"></i>
     </a>
   
