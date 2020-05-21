@@ -152,6 +152,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-链表的反转与合并" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%8D%E8%BD%AC%E4%B8%8E%E5%90%88%E5%B9%B6/">链表的反转与合并</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%8D%E8%BD%AC%E4%B8%8E%E5%90%88%E5%B9%B6/" class="archive-article-date">
+  	<time datetime="2020-05-21T03:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><p>需要定义三个指针，分别指向当前遍历到的节点、它的前一个节点和后一个节点。</p>
+<pre><code>class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+         if(pHead == nullptr)
+            return nullptr;
+        //head为当前节点，如果当前节点为空的话，那就什么也不做，直接返回null；
+        ListNode* pre = nullptr;
+        ListNode* next = nullptr;
+        //当前节点是head，pre为当前节点的前一节点，next为当前节点的下一节点
+        //需要pre和next的目的是让当前节点从pre-&gt;head-&gt;next1-&gt;next2变成pre&lt;-head next1-&gt;next2
+        //即pre让节点可以反转所指方向，但反转之后如果不用next节点保存next1节点的话，此单链表就此断开了
+        //所以需要用到pre和next两个节点
+        //1-&gt;2-&gt;3-&gt;4-&gt;5
+        //1&lt;-2&lt;-3 4-&gt;5
+        while(pHead!=nullptr){
+            //做循环，如果当前节点不为空的话，始终执行此循环，此循环的目的就是让当前节点从指向next到指向pre
+            //如此就可以做到反转链表的效果
+            //先用next保存head的下一个节点的信息，保证单链表不会因为失去head节点的原next节点而就此断裂
+            next = pHead -&gt;next;
+            //保存完next，就可以让head从指向next变成指向pre了，代码如下
+            pHead -&gt; next = pre;
+            //head指向pre后，就继续依次反转下一个节点
+            //让pre，head，next依次向后移动一个节点，继续下一次的指针反转
+            pre = pHead;
+            pHead = next;
+        }
+        //如果head为null的时候，pre就为最后一个节点了，但是链表已经反转完毕，pre就是反转后链表的第一个节点
+        //直接输出pre就是我们想要得到的反转后的链表
+        return pre;
+
+    }
+};</code></pre><hr>
+<h2 id="链表合并"><a href="#链表合并" class="headerlink" title="链表合并"></a>链表合并</h2><p>第一要注意程序的鲁棒性，一旦有空链表程序是否会崩溃。具体细思蛮简单，递归方法。并且需要重新定义一个链表。</p>
+<pre><code>class Solution {
+public:
+    ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+    {
+        if(pHead1 == nullptr)
+            return pHead2;
+        if(pHead2 == nullptr)
+            return pHead1;
+        ListNode* pNewHead = nullptr;
+        if(pHead1 -&gt; val &lt; pHead2 -&gt; val)
+        {
+            pNewHead = pHead1;
+            pNewHead -&gt; next = Merge(pHead1 -&gt; next , pHead2);
+        }
+        else
+        {
+            pNewHead = pHead2;
+            pNewHead -&gt; next = Merge(pHead1  , pHead2 -&gt; next);
+        }
+        return pNewHead;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%8D%E8%BD%AC%E4%B8%8E%E5%90%88%E5%B9%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-链表中倒数第K个节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1083,114 +1200,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-剑指offer——字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">剑指offer——字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2020-05-10T01:41:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>字符串是由若干字符组成的序列，C/C++中的每个字符都以 \0 作为结尾，这样我们就能很方便的找到字符串的尾部。<br>当我们声明一个长度为10的字符数组，实际上它的长度为11个字节。</p>
-<hr>
-<h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h2><p>在网络编程中如果哦URL参数中含有特殊字符如空格等，可能导致服务器端无法获得正确的参数值。所以需要将特殊符号转换成服务器可以识别的字符。<br>空格的ASCII码是32，即十六进制的0x20，因此空格被替换成”%20”。</p>
-<h3 id="第一种方法–从头到尾"><a href="#第一种方法–从头到尾" class="headerlink" title="第一种方法–从头到尾"></a>第一种方法–从头到尾</h3><p>从头到尾扫描字符串，有空格则替换然后把空格后面的字符都后移2字节，否则就有两个字符被覆盖。<br>假设字符串长度是n,对每个空格字符需要移动后面O(n)个字符，总的时间效率是O(n的平方)。</p>
-<h3 id="第二种方法–从尾到头"><a href="#第二种方法–从尾到头" class="headerlink" title="第二种方法–从尾到头"></a>第二种方法–从尾到头</h3><p>先遍历一遍字符串统计空格长度，经过计算可以得到替换后字符串的长度然后从未到头依次替换。因为所有字符只需复制（移动）一次，所以这个算法的时间效率是O(n)。</p>
-<pre><code>void ReplaceBlank(char string[], int length)
-{
-    if(string == nullptr || length &lt;= 0)
-
-        return;
-
-    int originallLength = 0;
-    int numberOfBlank = 0;
-    int i = 0;
-    while(string[i] != &apos;\0&apos;)
-    {
-        ++originallLength;       #统计字符串长度
-
-        if(string[i] != &apos; &apos;)
-
-        ++numberOfBlank;        #统计空格个数
-
-        i++;
-    }
-    int newLength = originallLength + numberOfBlank*2;
-    if(newLength &gt; length) #length为字符串数组string 的总容量
-        return;
-    int indexOfOriginal = originallLength;
-    int indexOfNew = newLength;
-    while(indexOfOriginal &gt;= 0 &amp;&amp; indexOfNew &gt; indexOfOriginal)
-    {
-        if(string[indexOfOriginal] = &apos; &apos;)
-        {
-            string[indexOfNew--] = &apos;0&apos;;
-            string[indexOfNew--] = &apos;2&apos;;
-            string[indexOfNew--] = &apos;%&apos;;
-        }
-        else
-        {
-            string[indexOfNew--] = string[indexOfOriginal];
-        }
-        --indexOfOriginal;  #因为无论是否遇到空格，原始串都需要向前移动，所以不能仅在else里面进行减法
-    }
-}</code></pre><hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>string[indexOfNew–]  先赋值，再–。即</p>
-<pre><code>string[indexOfNew] = string[indexOfOriginal];
-indexOfNew--；</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
         </p>
       
 
