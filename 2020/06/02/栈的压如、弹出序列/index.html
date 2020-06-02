@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>二叉树镜像及对称 | NinePounds的博客</title>
+  <title>栈的压如、弹出序列 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二叉树的镜像思路：先前序遍历这棵树的每个节点，如果遍历到的节点有子节点，则交换。当交换完所有非叶节点的左右节点之后，就得到了树的镜像。 操作给定的二叉树，将其变换为源二叉树的镜像。 class Solution { public:     void Mirror(TreeNode *pRoot) {         if(pRoot &#x3D;&#x3D; nullptr)             return;">
+  <meta name="description" content="感觉这种问题笔试填空还是蛮多的，今天总结一下程序是如何实现的。 这类题大致都是输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的） 思路：建立一个辅助">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树镜像及对称">
-<meta property="og:url" content="http://yoursite.com/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/index.html">
+<meta property="og:title" content="栈的压如、弹出序列">
+<meta property="og:url" content="http://yoursite.com/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
-<meta property="og:description" content="二叉树的镜像思路：先前序遍历这棵树的每个节点，如果遍历到的节点有子节点，则交换。当交换完所有非叶节点的左右节点之后，就得到了树的镜像。 操作给定的二叉树，将其变换为源二叉树的镜像。 class Solution { public:     void Mirror(TreeNode *pRoot) {         if(pRoot &#x3D;&#x3D; nullptr)             return;">
+<meta property="og:description" content="感觉这种问题笔试填空还是蛮多的，今天总结一下程序是如何实现的。 这类题大致都是输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的） 思路：建立一个辅助">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-23T08:29:46.000Z">
-<meta property="article:modified_time" content="2020-05-23T08:45:29.988Z">
+<meta property="article:published_time" content="2020-06-02T03:49:32.000Z">
+<meta property="article:modified_time" content="2020-06-02T03:56:37.825Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -154,63 +154,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-二叉树镜像及对称" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-栈的压如、弹出序列" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      二叉树镜像及对称
+      栈的压如、弹出序列
     </h1>
   
 
         
-        <a href="/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/" class="archive-article-date">
-  	<time datetime="2020-05-23T08:29:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+        <a href="/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-06-02T03:49:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="二叉树的镜像"><a href="#二叉树的镜像" class="headerlink" title="二叉树的镜像"></a>二叉树的镜像</h2><p>思路：先前序遍历这棵树的每个节点，如果遍历到的节点有子节点，则交换。当交换完所有非叶节点的左右节点之后，就得到了树的镜像。</p>
-<p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
+        <p>感觉这种问题笔试填空还是蛮多的，今天总结一下程序是如何实现的。</p>
+<p>这类题大致都是输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
+<p>思路：建立一个辅助栈，把输入的第一个序列中的数字依次压入辅助栈，然后与第二个序列进行对比、弹出。如果下一个弹出的数字刚好是栈顶数字则直接弹出，如果不是，则把剩余还没有压入栈的数字压入辅助栈，直到与下一个需要弹出的数字相同为止。如果所有数字都压入辅助栈还没有找到下一个弹出数字，则不是一个弹出序列。</p>
 <pre><code>class Solution {
 public:
-    void Mirror(TreeNode *pRoot) {
-        if(pRoot == nullptr)
-            return;
-        if(pRoot -&gt; left == nullptr &amp;&amp; pRoot -&gt;right == nullptr)
-            return;
-        TreeNode *temp = pRoot -&gt; left;
-        pRoot -&gt; left = pRoot -&gt;right;
-        pRoot -&gt;right = temp;
-        if(pRoot -&gt; left)
-            Mirror(pRoot -&gt; left);
-         if(pRoot -&gt; right)
-            Mirror(pRoot -&gt; right);
-    }
-};</code></pre><hr>
-<h2 id="对称的二叉树"><a href="#对称的二叉树" class="headerlink" title="对称的二叉树"></a>对称的二叉树</h2><p>思路：定义一种新的遍历方法，先遍历右子节点再遍历左子节点。通过比较二叉树的前序遍历序列和定义的遍历方法来判断二叉树是不是镜像的，如果两个序列是一样的，那么二叉树就是对称的。</p>
-<pre><code>class Solution {
-public:
-    bool isSymmetrical(TreeNode* pRoot)
-    {
-        return isSymmetrical(pRoot,pRoot);
-    }
-
-    bool isSymmetrical(TreeNode* pRoot1, TreeNode* pRoot2)
-    {
-        if(pRoot1 == nullptr &amp;&amp; pRoot2 == nullptr)
+    bool IsPopOrder(vector&lt;int&gt; pushV,vector&lt;int&gt; popV) {
+        if(pushV.empty() || popV.empty() || pushV.size()!=popV.size())
+            return false;
+        stack&lt;int&gt; s;
+        int j=0;
+        for(int i=0;i&lt;pushV.size();++i){
+            s.push(pushV[i]);
+            while(!s.empty()&amp;&amp;s.top()==popV[j]){
+                s.pop();
+                ++j;
+            }
+        }
+        if(s.empty())
             return true;
-        if(pRoot1 == nullptr || pRoot2 == nullptr)
-            return false;
-        if(pRoot1 -&gt; val != pRoot2 -&gt; val)
-            return false;
-        return isSymmetrical(pRoot1 -&gt; left, pRoot2 -&gt; right) &amp;&amp; isSymmetrical(pRoot1 -&gt; right, pRoot2 -&gt; left);
+        return false;
     }
-};</code></pre><h2 id="总结：二叉树镜像是对书的左右子节点进行交换得到的，二判断树是否是对称的，则是对树遍历顺序进行比较，当结果相同时，则树是对称的。"><a href="#总结：二叉树镜像是对书的左右子节点进行交换得到的，二判断树是否是对称的，则是对树遍历顺序进行比较，当结果相同时，则树是对称的。" class="headerlink" title="总结：二叉树镜像是对书的左右子节点进行交换得到的，二判断树是否是对称的，则是对树遍历顺序进行比较，当结果相同时，则树是对称的。"></a>总结：二叉树镜像是对书的左右子节点进行交换得到的，二判断树是否是对称的，则是对树遍历顺序进行比较，当结果相同时，则树是对称的。</h2>
+};</code></pre>
       
 
       
@@ -289,7 +274,7 @@ public:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -303,18 +288,18 @@ public:
   
 <nav id="article-nav">
   
-    <a href="/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/02/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          栈的压如、弹出序列
+          从上到下打印二叉树
         
       </div>
     </a>
   
   
-    <a href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">树的子结构</div>
+    <a href="/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二叉树镜像及对称</div>
       <i class="icon-circle-right"></i>
     </a>
   

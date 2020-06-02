@@ -152,6 +152,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="n-从上到下打印二叉树" class="article article-type-n  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">从上到下打印二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2020-06-02T03:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+<p>这实质上是考察遍历算法，只是与前序、中序、后续不同。可以利用队列来实现。</p>
+<p>思路：每次打印一个节点的时候，如果该节点有子节点，则把该节点的子节点放入一个队列，接下来到队列的头部弹出最早进入队列的节点，重复操作，直到全部打印出来。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;int&gt; PrintFromTopToBottom(TreeNode* root) {
+        vector&lt;int&gt; res;
+        if(root==NULL)
+            return res;
+        queue&lt;TreeNode*&gt; q;
+        q.push(root);
+        while(!q.empty()){
+            res.push_back(q.front()-&gt;val);
+            if(q.front()-&gt;left!=NULL)
+                q.push(q.front()-&gt;left);
+            if(q.front()-&gt;right!=NULL)
+                q.push(q.front()-&gt;right);
+            q.pop();
+        }
+        return res;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-栈的压如、弹出序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/">栈的压如、弹出序列</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-06-02T03:49:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感觉这种问题笔试填空还是蛮多的，今天总结一下程序是如何实现的。</p>
+<p>这类题大致都是输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
+<p>思路：建立一个辅助栈，把输入的第一个序列中的数字依次压入辅助栈，然后与第二个序列进行对比、弹出。如果下一个弹出的数字刚好是栈顶数字则直接弹出，如果不是，则把剩余还没有压入栈的数字压入辅助栈，直到与下一个需要弹出的数字相同为止。如果所有数字都压入辅助栈还没有找到下一个弹出数字，则不是一个弹出序列。</p>
+<pre><code>class Solution {
+public:
+    bool IsPopOrder(vector&lt;int&gt; pushV,vector&lt;int&gt; popV) {
+        if(pushV.empty() || popV.empty() || pushV.size()!=popV.size())
+            return false;
+        stack&lt;int&gt; s;
+        int j=0;
+        for(int i=0;i&lt;pushV.size();++i){
+            s.push(pushV[i]);
+            while(!s.empty()&amp;&amp;s.top()==popV[j]){
+                s.pop();
+                ++j;
+            }
+        }
+        if(s.empty())
+            return true;
+        return false;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%A6%82%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二叉树镜像及对称" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1033,192 +1199,6 @@ private:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-剑指offer——斐波那锲数列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/">剑指offer——斐波那锲数列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-05-13T04:10:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="斐波那契数列与黄金分割比"><a href="#斐波那契数列与黄金分割比" class="headerlink" title="斐波那契数列与黄金分割比"></a>斐波那契数列与黄金分割比</h2><p>斐波那契数列的由来是“兔子问题”。</p>
-<p>从中总结的规律就是：</p>
-<p>（1）每个月小兔子数 = 上个月的大兔子数；</p>
-<p>（2）每个月的大兔子数 = 上个月的大兔子数 + 上个月的小兔子数；</p>
-<p>（3）每个月的大兔子数 = 上个月的大兔子数 + 上上个月的大兔子数。</p>
-<p>1， 1， 2， 3， 5， 8， 13， 21， 34， 55，89，,144……</p>
-<p>即前两项是1， 1，后面的每一项是前面两项的和，这就是斐波那契数列。提到数列，很自然想到求极限。所以，这里斐波那契数列后一项与前一项比值的极限就是二分之根号五减一，约等于0.618.这就是黄金分割比。</p>
-<hr>
-<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。</p>
-<pre><code>class Solution {
-public:
-    int Fibonacci(int n) {
-        int a[2] = {0,1};
-        if(n &lt; 2)
-            return a[n];
-        int fibNone = 1;
-        int fibNtwo = 0;
-        int fibN = 0;
-        for (int i = 2 ; i&lt;=n; i++)
-        {
-            fibN = fibNtwo + fibNone;
-            fibNtwo = fibNone;
-            fibNone = fibN;
-        }
-        return fibN;
-    }
-};</code></pre><p>另外还有青蛙跳台阶问题，一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。<br>也可以用此求解：假设现在6个台阶，我们可以从第5跳一步到6，这样的话有多少种方案跳到5就有多少种方案跳到6，另外我们也可以从4跳两步跳到6，跳到4有多少种方案的话，就有多少种方案跳到6，其他的不能从3跳到6什么的啦，所以最后就是f(6) = f(5) + f(4)；这样子也很好理解变态跳台阶的问题了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-剑指offer——栈和队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/12/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">剑指offer——栈和队列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/12/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-05-12T10:33:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>「堆栈」作为计算机科学中的一个专有词语，在许多的面试和考试中会出现，一般在面试的过程中我们讨论的「堆栈」指的是数据结构中的堆栈，此外，计算机操作系统中也有关于堆栈的定义，我们需要明确操作系统中的堆、栈和数据结构堆、栈不是一个概念，它们除了名字一样没有什么必然的联系，本文主要介绍数据结构中的堆栈。</p>
-<hr>
-<h1 id="堆、栈和队列"><a href="#堆、栈和队列" class="headerlink" title="堆、栈和队列"></a>堆、栈和队列</h1><p>在数据结构中，「堆栈」分别有着以下含义：</p>
-<p>• 堆（heap）也被称为优先队列，队列中允许的操作是 先进先出（FIFO），在队尾插入元素，在队头取出元素。而堆也是一样，在堆底插入元素，在堆顶取出元素。二叉树的衍生，有最小堆最大堆的两个概念，将根节点最大的堆叫做最大堆或大根堆，根节点最小的堆叫做最小堆或小根堆。常见的堆有二叉堆、斐波那契堆等。</p>
-<p>• 栈（Stack）又名堆栈，作为一个 先进后出 的数据结构。（注意：这里的堆栈本身就是栈，只是换了个抽象的名字。）<br>它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。向一个栈插入新元素又称作进栈、入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素；从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</p>
-<p>• 队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。</p>
-<p>• 队列采用先进先出 FIFO(first in first out)，新元素（等待进入队列的元素）总是被插入到链表的尾部，而读取的时候总是从链表的头部开始读取。每次读取一个元素，释放一个元素。所谓的动态创建，动态释放。因而也不存在溢出等问题。由于链表由结构体间接而成，遍历也方便。</p>
-<hr>
-<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
-<pre><code>class Solution
-{
-public:
-    void push(int node)
-    {
-        stack1.push(node);   //将元素输入到栈一里
-    }
-
-int pop()
-{
-    int a;
-    if(stack2.empty())              //首先判断栈二是否为空，当栈二为空时将栈一里面的元素循环导入二中
-    {
-        while(!stack1.empty())      //将栈一里面的元素全部导入二中，直到为空
-        a = stack1.top();
-        stack2.push(a);
-        stack1.pop();
-    }
-    a = stack2.top();               //当栈二里有元素时则依次弹出
-    stack2.pop();
-    return a;
-}
-private:
-    stack&lt;int&gt; stack1;
-    stack&lt;int&gt; stack2;
-}</code></pre><p>解题思路： 弹弹床机制，因为栈是先进后出，所以准备两个栈，当栈二为空时，输入栈一的数弹出到二，然后栈2再弹出。经过两次弹出后就可以实现像队列一样先进先出了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/12/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">展开全文 >></a>
         </p>
       
 
