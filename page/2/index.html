@@ -152,6 +152,301 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-剑指offer——位运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/">剑指offer——位运算</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2020-05-17T06:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么计算机以补码形式存储"><a href="#为什么计算机以补码形式存储" class="headerlink" title="为什么计算机以补码形式存储"></a>为什么计算机以补码形式存储</h2><p>补码(two’s complement) 1、在计算机系统中，数值一律用补码来表示（存储）。 主要原因：使用补码，可以将符号位和其它位统一处理；同时，减法也可按加法来处理。另外，两个用补 码表示的数相加时，如果最高位（符号位）有进位，则进位被舍弃。 2、补码与原码的转换过程几乎是相同的。</p>
+<p>在计算机中主要是以补码的形式存储，那么为什么二进制数在原码、反码、补码中选择以补码的形式存储呢？</p>
+<h3 id="一、为什么不以原码形式存储？"><a href="#一、为什么不以原码形式存储？" class="headerlink" title="一、为什么不以原码形式存储？"></a>一、为什么不以原码形式存储？</h3><p>  首先，原码是站在用户角度的，是原始的二进制！</p>
+<p>求原码：</p>
+<pre><code>1.用户的数字分为正负数，需要有一位存储符号
+
+2.最高位为符号位：0为正，1为负
+
+3.左边是高位，右边是低位</code></pre><p>由原码的计算方式可以发现源码存储会引发2个问题：</p>
+<p>0有两个存储方式</p>
+<p>我们以char型（占1字节，8位）为例（下同）：</p>
+<pre><code>+0：    0000 0000
+
+-0：    1000 0000</code></pre><p>不难发现+0和-0的原码是不一样的，而在计算过程中，+0和-0是没有任何区别的。</p>
+<p>正数和负数相加，结果不正确（计算机只会加）</p>
+<pre><code> 1 - 1 =1 + （-1）
+
+ 1：  0000 0001
+
+-1：  1000 0001
+
+         1000 0010  =  -2</code></pre><p>很显然1-1=0，而用原码进行计算得出的结果却相差甚远！</p>
+<h3 id="二、为什么不以反码形式存储？"><a href="#二、为什么不以反码形式存储？" class="headerlink" title="二、为什么不以反码形式存储？"></a>二、为什么不以反码形式存储？</h3><p>既然原码不适合作为计算机的存储方式，人们在解决这个问题的过程中又提出了反码的概念</p>
+<p>求反码：</p>
+<p>1.求原码</p>
+<p>2.符号为不变，其他位取反</p>
+<p>注意：正数原码、反码一样!</p>
+<p>接下来我们检验一下1 - 1：</p>
+<pre><code>   1：    0000 0001
+
+-  1：   1111 1110
+
+            1111 1111 -&gt;1000 000(转换为原码，因为原码是站在用户角度的) = -0</code></pre><p>不难可能出反码已经解决的正负数相加结果不正确的问题</p>
+<p>然后我们再检验+0、-0</p>
+<pre><code>+0  0000 0000
+
+-0  1111 1111</code></pre><p>由此看出，反码并没有解决0有两种形式的问题</p>
+<p>反码存储会引发1个问题：</p>
+<p>0有两个存储方式</p>
+<h3 id="三、补码存储"><a href="#三、补码存储" class="headerlink" title="三、补码存储"></a>三、补码存储</h3><p>  在反码的基础上，人们有提出了补码的概念</p>
+<p>求补码：</p>
+<p>   补码为其反码+1</p>
+<p>   注意：正数的原码、反码、补码都一样！</p>
+<p>接下来我们对补码存储进行验证：</p>
+<pre><code>+0： 0000 0000
+
+ -0： 原码：  1000 0000
+
+         反码：  1111 1111
+
+         补码：1 0000 0000（char占1字节八位，最高位丢弃）= 0000 0000</code></pre><p> 可以看出补码解决了+0 -0不一样的问题</p>
+<pre><code>+1： 0000 0001
+
+ -1： 1111 1111 
+
+      1 0000 0000（最高位丢弃）=0000 0000 = 0</code></pre><p> 那么补码也解决了正负数相加结果不正确的问题！ </p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>补码是在原码的基础上为了适应计算机运算一步一步完善而来，原码和反码存储都有一定的弊端，因此计算机采用补码存储！</p>
+<hr>
+<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
+<pre><code>class Solution {
+public:
+    int  NumberOf1(int n) {
+
+        int count = 0;
+        while(n){
+            count++;
+            n = n &amp; (n - 1);
+        }
+        return count;
+    }
+};</code></pre><p>思路：如果一个整数不为0，那么这个整数至少有一位是1。如果我们把这个整数减1，那么原来处在整数最右边的1就会变为0，原来在1后面的所有的0都会变成1(如果最右边的1后面还有0的话)。其余所有位将不会受到影响。<br>举个例子：一个二进制数1100，从右边数起第三位是处于最右边的一个1。减去1后，第三位变成0，它后面的两位0变成了1，而前面的1保持不变，因此得到的结果是1011.我们发现减1的结果是把最右边的一个1开始的所有位都取反了。这个时候如果我们再把原来的整数和减去1之后的结果做与运算，从原来整数最右边一个1那一位开始所有位都会变成0。如1100&amp;1011=1000.也就是说，把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。<br>并且负数运算也是一样的，因此计算机采用补码存储！</p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://blog.csdn.net/qq_41727218/article/details/79521759" target="_blank" rel="noopener">https://blog.csdn.net/qq_41727218/article/details/79521759</a><br>[2] <a href="https://www.cnblogs.com/spring-hailong/p/6071245.html" target="_blank" rel="noopener">https://www.cnblogs.com/spring-hailong/p/6071245.html</a><br>[3] <a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-剑指offer——二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">剑指offer——二分查找</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
+  	<time datetime="2020-05-17T05:43:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>二分查找又称折半查找，它是一种效率较高的查找方法。</p>
+<p>二分查找要求：线性表是有序表，即表中结点按关键字有序，并且要用向量作为表的存储结构。不妨设有序表是递增有序的。</p>
+<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>二分查找的基本思想是：设R[low..high]是当前的查找区间</p>
+<p>（1）首先确定该区间的中点位置</p>
+<p>（2）然后将待查的K值与R[mid].key比较：若相等，则查找成功并返回此位置，否则须确定新的查找区间，继续二分查找，具体方法如下：</p>
+<p>①  若R[mid].key&gt;K，则由表的有序性可知R[mid..n].keys均大于K，因此若表中存在关键字等于K的结点，则该结点必定是在位置mid左边的子表R[1..mid-1]中，故新的查找区间是左子表R[1..mid-1]。</p>
+<p>②  若R[mid].key&lt;K，则要查找的K必在mid的右子表R[mid+1..n]中，即新的查找区间是右子表R[mid+1..n]。下一次查找是针对新的查找区间进行的。</p>
+<p>因此，从初始的查找区间R[1..n]开始，每经过一次与当前查找区间的中点位置上的结点关键字的比较，就可确定查找是否成功，不成功则当前的查找区间就缩小一半。这一过程重复直至找到关键字为K的结点，或者直至当前的查找区间为空(即查找失败)时为止。</p>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>  二分查找只适用顺序存储结构。</p>
+<h3 id="二分查找算法"><a href="#二分查找算法" class="headerlink" title="二分查找算法"></a>二分查找算法</h3><pre><code>/*折半查找*/
+
+int Binary_Search(int a*,int n,int key)
+
+{
+
+    int low,high,mid;
+
+    low=1;     /*定义最底下标为记录首位*/
+
+    high=n;    /*定义最高下标为记录末位*/
+
+    while(low&lt;=high)
+
+    {
+
+        mid=(low+high)/2;    /*折半*/
+
+        if(key&lt;a[mid])
+
+            high=mid-1;
+
+        if(key&gt;a[mid])
+
+            low=mid+1;
+
+        else
+
+            return mid;
+
+    }
+
+    return 0;
+
+}</code></pre><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>二分查找的优点：折半查找的时间复杂度为O(logn)，远远好于顺序查找的O(n)。</p>
+<p>二分查找的缺点：虽然二分查找的效率高，但是要将表按关键字排序。而排序本身是一种很费时的运算。既使采用高效率的排序方法也要花费O(nlgn)的时间。</p>
+<h3 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h3><p>二分查找只适用顺序存储结构。为保持表的有序性，在顺序结构里插入和删除都必须移动大量的结点。因此，二分查找特别适用于那种一经建立就很少改动、而又经常需要查找的线性表。对那些查找少而又经常需要改动的线性表，可采用链表作存储结构，进行顺序查找。链表上无法实现二分查找。</p>
+<hr>
+<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。</p>
+<pre><code>class Solution {
+public:
+    int minNumberInRotateArray(vector&lt;int&gt; rotateArray) {
+        int size = rotateArray.size();
+        if(size == 0){
+            return 0;
+        }//if
+        int left = 0,right = size - 1;
+        int mid = 0;
+        // rotateArray[left] &gt;= rotateArray[right] 确保旋转
+        while(rotateArray[left] &gt;= rotateArray[right]){
+            // 分界点
+            if(right - left == 1){
+                mid = right;
+                break;
+            }//if
+            mid = left + (right - left) / 2;
+            // rotateArray[left] rotateArray[right] rotateArray[mid]三者相等
+            // 无法确定中间元素是属于前面还是后面的递增子数组
+            // 只能顺序查找
+            if(rotateArray[left] == rotateArray[right] &amp;&amp; rotateArray[left] == rotateArray[mid]){
+                return MinOrder(rotateArray,left,right);
+            }//if
+            // 中间元素位于前面的递增子数组
+            // 此时最小元素位于中间元素的后面
+            if(rotateArray[mid] &gt;= rotateArray[left]){
+                left = mid;
+            }//if
+            // 中间元素位于后面的递增子数组
+            // 此时最小元素位于中间元素的前面
+            else{
+                right = mid;
+            }//else
+        }//while
+        return rotateArray[mid];
+    }
+private:
+    // 顺序寻找最小值
+    int MinOrder(vector&lt;int&gt; &amp;num,int left,int right){
+        int result = num[left];
+        for(int i = left + 1;i &lt; right;++i){
+            if(num[i] &lt; result){
+                result = num[i];
+            }//if
+        }//for
+        return result;
+    }
+};</code></pre><p>思路：如果把前0个元素搬到后面，则第一个数字就是最小值，直接返回index1。另外，当指针及中间数字相同时，只能用排序法查找元素。</p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://www.cnblogs.com/yedushusheng/p/5524166.html" target="_blank" rel="noopener">https://www.cnblogs.com/yedushusheng/p/5524166.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-剑指offer——斐波那锲数列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
