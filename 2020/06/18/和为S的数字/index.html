@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>二叉树的深度 | NinePounds的博客</title>
+  <title>和为S的数字 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二叉树的深度利用递归算法即可实现 class Solution { public:     int TreeDepth(TreeNode* pRoot){         if(!pRoot) return 0 ;             return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));     } };m">
+  <meta name="description" content="和为S的两个数字输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和刚好等于S，如有多对数字和等于S，则输出任意一对即可。 思路：因为数组已经安排好了，所以定义两个指针，一个指向第一个数字ahead，一个指向最后一个数字behind，当和大于S，则behind向前移动；如果小于S则ahead向后移动。 bool FindNumber(int data[], int length,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树的深度">
-<meta property="og:url" content="http://yoursite.com/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/index.html">
+<meta property="og:title" content="和为S的数字">
+<meta property="og:url" content="http://yoursite.com/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
-<meta property="og:description" content="二叉树的深度利用递归算法即可实现 class Solution { public:     int TreeDepth(TreeNode* pRoot){         if(!pRoot) return 0 ;             return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));     } };m">
+<meta property="og:description" content="和为S的两个数字输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和刚好等于S，如有多对数字和等于S，则输出任意一对即可。 思路：因为数组已经安排好了，所以定义两个指针，一个指向第一个数字ahead，一个指向最后一个数字behind，当和大于S，则behind向前移动；如果小于S则ahead向后移动。 bool FindNumber(int data[], int length,">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-17T06:28:07.000Z">
-<meta property="article:modified_time" content="2020-06-18T02:24:28.423Z">
+<meta property="article:published_time" content="2020-06-18T03:14:39.000Z">
+<meta property="article:modified_time" content="2020-06-18T03:32:37.309Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -154,80 +154,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-二叉树的深度" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-和为S的数字" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      二叉树的深度
+      和为S的数字
     </h1>
   
 
         
-        <a href="/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2020-06-17T06:28:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/" class="archive-article-date">
+  	<time datetime="2020-06-18T03:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="二叉树的深度"><a href="#二叉树的深度" class="headerlink" title="二叉树的深度"></a>二叉树的深度</h2><p>利用递归算法即可实现</p>
+        <h2 id="和为S的两个数字"><a href="#和为S的两个数字" class="headerlink" title="和为S的两个数字"></a>和为S的两个数字</h2><p>输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和刚好等于S，如有多对数字和等于S，则输出任意一对即可。</p>
+<p>思路：因为数组已经安排好了，所以定义两个指针，一个指向第一个数字ahead，一个指向最后一个数字behind，当和大于S，则behind向前移动；如果小于S则ahead向后移动。</p>
+<pre><code>bool FindNumber(int data[], int length, int sum, int* num1, int* num2)
+{
+    bool found = false;
+    if(length &lt; 1 || num1 == nullptr || num2 == nullptr)
+        return found;
+
+    int ahead = 0;
+    int behind = length - 1;
+
+    while(behind &gt; ahead)
+    {
+        long cur = data[ahead] + data[behind];
+
+        if(cur == sum)
+        {
+            *num1 = data[ahead];
+            *num2 = data[behind];
+            found = true;
+            break;
+        }
+        else if(cur &gt; sum)
+            behind--;
+        else
+            ahead++;
+    }
+    return found;
+}</code></pre><hr>
+<h2 id="和为S的连续正序列"><a href="#和为S的连续正序列" class="headerlink" title="和为S的连续正序列"></a>和为S的连续正序列</h2><p>输出所有和为S的连续正数序列。序列内按照从小至大的顺序，序列间按照开始数字从小到大的顺序</p>
+<p>思路：双指针问题，当总和小于sum，大指针继续+，否则小指针+</p>
 <pre><code>class Solution {
 public:
-    int TreeDepth(TreeNode* pRoot){
-        if(!pRoot) return 0 ;
-            return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));
-    }
-};</code></pre><p>max即返回两个数的最大值，1+TreeDepth(pRoot-&gt;left)，1 可看为是当前层数，加上下一结点的层数，递归。</p>
-<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>每个节点的左右子树的深度相差不超过1，就是一棵平衡二叉树。</p>
-<p>可以与二叉树的深度相结合</p>
-<pre><code>class Solution {
-        public:
-            int TreeDepth(TreeNode* pRoot){
-                if(!pRoot) return 0 ;
-                    return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));
+    vector&lt;vector&lt;int&gt; &gt; FindContinuousSequence(int sum) {
+        vector&lt;vector&lt;int&gt; &gt; allRes;
+        int phigh = 2,plow = 1;
+
+        while(phigh &gt; plow){
+            int cur = (phigh + plow) * (phigh - plow + 1) / 2;  // 求和公式，首项加末项乘以项数除以二
+            if( cur &lt; sum)
+                phigh++;
+
+            if( cur == sum){
+                vector&lt;int&gt; res;
+                for(int i = plow; i&lt;=phigh; i++)
+                    res.push_back(i);
+                allRes.push_back(res);
+                plow++;
             }
 
-            bool IsBalanced(BinaryTree* pRoot)
-            {
-                if(pRoot == nullptr)
-                    return true;
-
-                int left = TreeDepth(pRoot -&gt; left);
-                int right = TreeDepth(pRoot -&gt; right);
-                int dif = left - right;
-
-                if(dif &gt;1 || dif &lt; -1)
-                    return false;
-
-                return IsBalanced(pRoot -&gt; left) &amp;&amp;  IsBalanced( pRoot -&gt; right);
-            }
-        };</code></pre><p>但是一个节点会被重复遍历，效率不高。可以采用后序遍历的方法，在遍历到第一个节点之前就已经遍历的他的左右子树。</p>
-<pre><code>class Solution {
-public:
-    bool IsBalanced(TreeNode *root, int &amp; dep){
-        if(root == NULL){
-            return true;
+            if(cur &gt; sum)
+                plow++;
         }
-        int left = 0;
-        int right = 0;
-        if(IsBalanced(root-&gt;left,left) &amp;&amp; IsBalanced(root-&gt;right, right)){
-            int dif = left - right;
-            if(dif&lt;-1 || dif &gt;1)
-                return false;
-            dep = (left &gt; right ? left : right) + 1;
-            return true;
-        }
-        return false;
+
+        return allRes;
     }
-    bool IsBalanced_Solution(TreeNode* pRoot) {
-        int dep = 0;
-        return IsBalanced(pRoot, dep);
-    }
-};</code></pre>
+};</code></pre><p>为什么要定义二位数组呢？ 因为可能有多个和为S的连续正数序列，将子序列放入定义好的二位数组里面输出。</p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 关于C++中vector&lt;vector<int> &gt;的使用 <a href="https://www.cnblogs.com/tyty-Somnuspoppy/p/9361821.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyty-Somnuspoppy/p/9361821.html</a></p>
+
       
 
       
@@ -306,7 +312,7 @@ public:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +326,9 @@ public:
   
 <nav id="article-nav">
   
-    <a href="/2020/06/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E7%BB%93%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          二叉搜索树的第k大结点
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/17/%E5%9C%A8%E6%8E%92%E5%BA%8F%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在排序的数组中查找数字</div>
+    <a href="/2020/06/17/C-%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B%E5%92%8C%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95%EF%BC%88%E5%89%8D%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E7%BB%AD%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++ 实现二叉树的建立和遍历算法（前序、中序、后续）</div>
       <i class="icon-circle-right"></i>
     </a>
   
