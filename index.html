@@ -152,6 +152,219 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-中sizeof-、strlen-、length-、size-详解和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">C++中sizeof()、strlen()、length()、size()详解和区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-06-28T02:17:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>c/c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();一、数组或字符串的长度:sizeof()、strlen()</p>
+<h2 id="sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。"><a href="#sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。" class="headerlink" title="sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。"></a>sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。</h2><h2 id="1、sizeof-返回所占总空间的字节数"><a href="#1、sizeof-返回所占总空间的字节数" class="headerlink" title="1、sizeof():返回所占总空间的字节数"></a>1、sizeof():返回所占总空间的字节数</h2><p>（1）、对于整型字符型数组</p>
+<p>（2）、对于整型或字符型指针</p>
+<h2 id="2、strlen-返回字符数组或字符串所占的字节数"><a href="#2、strlen-返回字符数组或字符串所占的字节数" class="headerlink" title="2、strlen():返回字符数组或字符串所占的字节数"></a>2、strlen():返回字符数组或字符串所占的字节数</h2><p>（1）、针对字符数组</p>
+<p>（2）、针对字符指针</p>
+<p>sizeof(…)是运算符，其值在编译时即计算好了，参数可以是数组、指针、类型、对象、函数等。它的功能是：获得保证能容纳实现所建立的最大对象的字节大小。由于在编译时计算，因此sizeof不能用来返回动态分配的内存空间的大小。</p>
+<p>strlen(…)是函数，要在运行时才能计算。参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。它的功能是：返回字符串的长度。该字符串可能是自己定义的，也可能是内存中随机的，该函数实际完成的功能是从代表该字符串的第一个地址开始遍历，直到遇到结束符’\0’。返回的长度大小不包括’\0’。</p>
+<p>strlen(char*)函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个’\0’,如果你只定义没有给它赋初值，这个结果是不定的，它会从aa首地址一直找下去，直到遇到’\0’停止。</p>
+<p>c/c++ strlen(str)和str.length()和str.size()都可以求字符串长度。</p>
+<p>其中str.length()和str.size()是用于求string类对象的成员函数</p>
+<p>strlen(str)是用于求字符数组的长度，其参数是char*。举例：</p>
+<p>1）char* ss = “0123456789”;<br>sizeof(ss)为4，ss是指向字符串常量的字符指针，sizeof 获得的是指针所占的空间,则为4<br>sizeof(<em>ss)为1，</em>ss是第一个char字符，则为1</p>
+<p>2）char ss[] = “0123456789”;<br>sizeof(ss)为11,ss是数组，计算到’\0’位置，因此是(10+1)<br>sizeof(<em>ss)为1,</em>ss是第一个字符</p>
+<p>3）char ss[100] = “0123456789”;<br>sizeof(ss)为100，ss表示在内存中预分配的大小，100*1<br>strlen(ss)为10，它的内部实现用一个循环计算字符串的长度,直到’\0’为止。</p>
+<p>4）int ss[100] = “0123456789”;<br>sizeof(ss)为400，ss表示在内存中预分配的大小，100<em>4<br>strlen(ss)错误，strlen参数只能是char</em>，且必须是以’\0’结尾</p>
+<p>5）char[] a={‘a’,’b’,’c’};<br>sizeof(a)的值应该为3。<br>char[] b={“abc”};<br>sizeof(b)的值应该是4。</p>
+<p>若string str={‘a’,’b’,’c’,’\0’,’X’};<br>那么sizeof(str)为5，strlen(str)为3。sizeof()、strlen()两者区别：</p>
+<p>1）sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+<p>2）sizeof是运算符，strlen是函数。 </p>
+<p>3）sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如：<br>short f();<br>printf(“%d\n”, sizeof(f()));<br>输出的结果是sizeof(short)，即2。 </p>
+<p>4）数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
+<p>5）大部分编译程序 在编译的时候就把sizeof计算过了 是类型或是变量的长度。这就是sizeof(x)可以用来定义数组维数的原因<br>char str[20]=”0123456789”;<br>int a=strlen(str); //a=10;<br>int b=sizeof(str); //而b=20; </p>
+<p>6）strlen的结果要在运行的时候才能计算出来，用来计算字符串的长度，不是类型占内存的大小。 </p>
+<p>7）sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。 </p>
+<p>8）当使用了一个结构类型或变量时， sizeof 返回实际的大小， 当使用一静态地空间数组， sizeof 返回全部数组的尺寸。 sizeof 操作符不能返回被动态分配的数组或外部的数组的尺寸 二、string中length()和size()</p>
+<p>c++中的size()和length()没有区别<br>如：<br>        string str=”0123456789”;<br>        cout &lt;&lt;”str.length()=”&lt;&lt;str.length()&lt;&lt;endl;//结果为10<br>        cout &lt;&lt;”str.size()=”&lt;&lt;str.size()&lt;&lt;endl;//结果为10</p>
+<p>为了兼容，这两个函数一样。 length()是因为沿用C语言的习惯而保留下来的，string类最初只有length()，引入STL之后，为了兼容又加入了size()，它是作为STL容器的属性存在的，便于符合STL的接口规则，以便用于STL的算法。 string类的size()/length()方法返回的是字节数，不管是否有汉字。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-翻转字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">翻转字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2020-06-28T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>翻转字符串无外乎就是翻转的次数，即翻转再翻转，通常是先翻转整个句子，再翻转单词顺序。</p>
+<p>左旋转字符串（例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”）旋转三次即可。</p>
+<ul>
+<li><p>第一次旋转： 将前 n 位旋转。</p>
+</li>
+<li><p>第二次旋转： 将 n ~ len - 1 位旋转。（len 位字符串长度 ; len = S.size()）</p>
+</li>
+<li><p>第三次旋转： 将整个句子翻转旋转。</p>
+<pre><code>class Solution {
+public:
+    void Reverse(string &amp;s,int start,int end)
+    {
+        char temp;
+        while(start&lt;end)
+        {
+            temp=s[start];
+            s[start]=s[end];
+            s[end]=temp;
+            start++;
+            end--;
+        }
+    }
+    string LeftRotateString(string str, int n) {
+        int len=str.length();
+        if(0==len || 0==n)
+            return str;
+        string &amp;temp=str;
+        Reverse(temp,0,n-1);
+        Reverse(temp,n,len-1);
+        Reverse(temp,0,len-1);
+        return str;
+    }
+};</code></pre></li>
+</ul>
+<hr>
+<h2 id="巧妙解法"><a href="#巧妙解法" class="headerlink" title="巧妙解法"></a>巧妙解法</h2><p>但是还有另外一种巧妙地方法，左旋转其实也等于两个相同的字符串排列在一起，从第 n 位开始到 len - 1</p>
+<pre><code>class Solution {
+public:
+    string LeftRotateString(string str, int n) {
+        int len = str.length();
+        if(len == 0) return &quot;&quot;;
+        n = n % len;       // 防止 n 超过字符串长度
+        str += str;
+        return str.substr(n, len);
+    }
+};</code></pre><h3 id="C-中substr函数的用法"><a href="#C-中substr函数的用法" class="headerlink" title="C++中substr函数的用法"></a>C++中substr函数的用法</h3><pre><code>#include&lt;string&gt;
+
+#include&lt;iostream&gt;
+
+using namespace std;
+
+int main()
+
+{
+
+　　string s(&quot;12345asdf&quot;);
+
+　　string a = s.substr(0,5);     //获得字符串s中从第0位开始的长度为5的字符串
+
+　　cout &lt;&lt; a &lt;&lt; endl;
+
+} </code></pre><p>输出结果为：12345</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-和为S的数字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1114,150 +1327,6 @@ sort(a,a+100,cmp);</code></pre><h3 id="to-string-函数"><a href="#to-string-函
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/15/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一个只出现一次的字符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/">第一个只出现一次的字符</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/13/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2020-06-13T12:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>扫描两次，第一次扫描字符串时，每扫描一个字符就在哈希表对应项中把次数加一。第二次扫描时，每扫描一个字符就能知道该字符出现的次数。<br>第一次扫描时间复杂度是O(n),第二次也是O(n)，所以总的时间复杂度是O(n)。<br>由于数组大小是一个常数，所以空间复杂度是O(1)。</p>
-<pre><code>class Solution {
-public:
-      int FirstNotRepeatingChar(string str) {
-        if ( str.length() == 0)
-            return -1;
-
-        unsigned int hashTime[256] = {0};
-        for(int i =0;i&lt;str.length();++i)
-            hashTime[str[i]]++;
-
-        for(int i =0;i&lt;str.length();++i)
-        {
-            if(hashTime[str[i]] == 1)
-                return i;
-        }
-        return -1;
-    }
-};</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TCP-IP协议总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/">TCP/IP协议总结</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-06-13T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://zhuanlan.zhihu.com/p/33889997" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33889997</a><br>[2] <a href="https://blog.csdn.net/u011318165/article/details/48102939" target="_blank" rel="noopener">https://blog.csdn.net/u011318165/article/details/48102939</a><br>[3] <a href="https://www.cnblogs.com/fengzanfeng/articles/1339347.html" target="_blank" rel="noopener">https://www.cnblogs.com/fengzanfeng/articles/1339347.html</a><br>[4] <a href="https://blog.csdn.net/cclliii/article/details/82932851" target="_blank" rel="noopener">https://blog.csdn.net/cclliii/article/details/82932851</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 

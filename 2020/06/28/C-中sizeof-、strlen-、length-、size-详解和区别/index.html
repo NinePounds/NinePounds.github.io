@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | NinePounds的博客</title>
+  <title>C++中sizeof()、strlen()、length()、size()详解和区别 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NinePounds的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/3/index.html">
+  <meta name="description" content="c&#x2F;c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();一、数组或字符串的长度:sizeof()、strlen() sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。1、sizeof():返回所占总空间的字节数（1）、对于整型字符型数组 （2）、对于整型或字符型指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中sizeof()、strlen()、length()、size()详解和区别">
+<meta property="og:url" content="http://yoursite.com/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
+<meta property="og:description" content="c&#x2F;c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();一、数组或字符串的长度:sizeof()、strlen() sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。1、sizeof():返回所占总空间的字节数（1）、对于整型字符型数组 （2）、对于整型或字符型指针">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-28T02:17:08.000Z">
+<meta property="article:modified_time" content="2020-06-28T02:24:02.166Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-中sizeof-、strlen-、length-、size-详解和区别" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++中sizeof()、strlen()、length()、size()详解和区别
+    </h1>
+  
+
+        
+        <a href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-06-28T02:17:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>c/c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();一、数组或字符串的长度:sizeof()、strlen()</p>
+<h2 id="sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。"><a href="#sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。" class="headerlink" title="sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。"></a>sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。</h2><h2 id="1、sizeof-返回所占总空间的字节数"><a href="#1、sizeof-返回所占总空间的字节数" class="headerlink" title="1、sizeof():返回所占总空间的字节数"></a>1、sizeof():返回所占总空间的字节数</h2><p>（1）、对于整型字符型数组</p>
+<p>（2）、对于整型或字符型指针</p>
+<h2 id="2、strlen-返回字符数组或字符串所占的字节数"><a href="#2、strlen-返回字符数组或字符串所占的字节数" class="headerlink" title="2、strlen():返回字符数组或字符串所占的字节数"></a>2、strlen():返回字符数组或字符串所占的字节数</h2><p>（1）、针对字符数组</p>
+<p>（2）、针对字符指针</p>
+<p>sizeof(…)是运算符，其值在编译时即计算好了，参数可以是数组、指针、类型、对象、函数等。它的功能是：获得保证能容纳实现所建立的最大对象的字节大小。由于在编译时计算，因此sizeof不能用来返回动态分配的内存空间的大小。</p>
+<p>strlen(…)是函数，要在运行时才能计算。参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。它的功能是：返回字符串的长度。该字符串可能是自己定义的，也可能是内存中随机的，该函数实际完成的功能是从代表该字符串的第一个地址开始遍历，直到遇到结束符’\0’。返回的长度大小不包括’\0’。</p>
+<p>strlen(char*)函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个’\0’,如果你只定义没有给它赋初值，这个结果是不定的，它会从aa首地址一直找下去，直到遇到’\0’停止。</p>
+<p>c/c++ strlen(str)和str.length()和str.size()都可以求字符串长度。</p>
+<p>其中str.length()和str.size()是用于求string类对象的成员函数</p>
+<p>strlen(str)是用于求字符数组的长度，其参数是char*。举例：</p>
+<p>1）char* ss = “0123456789”;<br>sizeof(ss)为4，ss是指向字符串常量的字符指针，sizeof 获得的是指针所占的空间,则为4<br>sizeof(<em>ss)为1，</em>ss是第一个char字符，则为1</p>
+<p>2）char ss[] = “0123456789”;<br>sizeof(ss)为11,ss是数组，计算到’\0’位置，因此是(10+1)<br>sizeof(<em>ss)为1,</em>ss是第一个字符</p>
+<p>3）char ss[100] = “0123456789”;<br>sizeof(ss)为100，ss表示在内存中预分配的大小，100*1<br>strlen(ss)为10，它的内部实现用一个循环计算字符串的长度,直到’\0’为止。</p>
+<p>4）int ss[100] = “0123456789”;<br>sizeof(ss)为400，ss表示在内存中预分配的大小，100<em>4<br>strlen(ss)错误，strlen参数只能是char</em>，且必须是以’\0’结尾</p>
+<p>5）char[] a={‘a’,’b’,’c’};<br>sizeof(a)的值应该为3。<br>char[] b={“abc”};<br>sizeof(b)的值应该是4。</p>
+<p>若string str={‘a’,’b’,’c’,’\0’,’X’};<br>那么sizeof(str)为5，strlen(str)为3。sizeof()、strlen()两者区别：</p>
+<p>1）sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+<p>2）sizeof是运算符，strlen是函数。 </p>
+<p>3）sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如：<br>short f();<br>printf(“%d\n”, sizeof(f()));<br>输出的结果是sizeof(short)，即2。 </p>
+<p>4）数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
+<p>5）大部分编译程序 在编译的时候就把sizeof计算过了 是类型或是变量的长度。这就是sizeof(x)可以用来定义数组维数的原因<br>char str[20]=”0123456789”;<br>int a=strlen(str); //a=10;<br>int b=sizeof(str); //而b=20; </p>
+<p>6）strlen的结果要在运行的时候才能计算出来，用来计算字符串的长度，不是类型占内存的大小。 </p>
+<p>7）sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。 </p>
+<p>8）当使用了一个结构类型或变量时， sizeof 返回实际的大小， 当使用一静态地空间数组， sizeof 返回全部数组的尺寸。 sizeof 操作符不能返回被动态分配的数组或外部的数组的尺寸 二、string中length()和size()</p>
+<p>c++中的size()和length()没有区别<br>如：<br>        string str=”0123456789”;<br>        cout &lt;&lt;”str.length()=”&lt;&lt;str.length()&lt;&lt;endl;//结果为10<br>        cout &lt;&lt;”str.size()=”&lt;&lt;str.size()&lt;&lt;endl;//结果为10</p>
+<p>为了兼容，这两个函数一样。 length()是因为沿用C语言的习惯而保留下来的，string类最初只有length()，引入STL之后，为了兼容又加入了size()，它是作为STL容器的属性存在的，便于符合STL的接口规则，以便用于STL的算法。 string类的size()/length()方法返回的是字节数，不管是否有汉字。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/" class="archive-article-date">
-  	<time datetime="2020-05-23T08:29:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/">二叉树镜像及对称</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-05-22T01:51:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">翻转字符串</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">树的子结构</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%8D%E8%BD%AC%E4%B8%8E%E5%90%88%E5%B9%B6/" class="archive-article-date">
-  	<time datetime="2020-05-21T03:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%8D%E8%BD%AC%E4%B8%8E%E5%90%88%E5%B9%B6/">链表的反转与合并</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/20/%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E8%8A%82%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2020-05-20T12:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/20/%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E8%8A%82%E7%82%B9/">链表中倒数第K个节点</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-05-19T06:09:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/">调整数组顺序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" class="archive-article-date">
-  	<time datetime="2020-05-18T11:49:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/">数值的整数次方</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/" class="archive-article-date">
-  	<time datetime="2020-05-17T06:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
-  	<time datetime="2020-05-17T05:43:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/17/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">二分查找</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-05-13T04:10:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/13/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%96%90%E6%B3%A2%E9%82%A3%E9%94%B2%E6%95%B0%E5%88%97/">斐波那锲数列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-05-12T10:33:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">栈和队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +352,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
