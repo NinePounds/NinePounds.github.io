@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | NinePounds的博客</title>
+  <title>快速排序 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NinePounds的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="快速排序：快速排序是冒泡排序的改进版，也是最好的一种内排序，在很多面试题中都会出现，也是作为程序员必须掌握的一种排序方法。 基本步骤为：  在待排序的元素任取一个元素作为基准(通常选第一个元素，但最的选择方法是从待排序元素中随机选取一个作为基准)，称为基准元素；  将待排序的元素进行分区，比基准元素大的元素放在它的右边，比其小的放在它的左边；  对左右两个分区重复以上步骤直到所有元素都是有序的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速排序">
+<meta property="og:url" content="http://yoursite.com/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
+<meta property="og:description" content="快速排序：快速排序是冒泡排序的改进版，也是最好的一种内排序，在很多面试题中都会出现，也是作为程序员必须掌握的一种排序方法。 基本步骤为：  在待排序的元素任取一个元素作为基准(通常选第一个元素，但最的选择方法是从待排序元素中随机选取一个作为基准)，称为基准元素；  将待排序的元素进行分区，比基准元素大的元素放在它的右边，比其小的放在它的左边；  对左右两个分区重复以上步骤直到所有元素都是有序的。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-03T02:03:18.000Z">
+<meta property="article:modified_time" content="2020-07-03T02:14:50.316Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,264 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-快速排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      快速排序
+    </h1>
+  
+
+        
+        <a href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-07-03T02:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>快速排序：快速排序是冒泡排序的改进版，也是最好的一种内排序，在很多面试题中都会出现，也是作为程序员必须掌握的一种排序方法。</p>
+<p>基本步骤为：</p>
+<ul>
+<li><p>在待排序的元素任取一个元素作为基准(通常选第一个元素，但最的选择方法是从待排序元素中随机选取一个作为基准)，称为基准元素；</p>
+</li>
+<li><p>将待排序的元素进行分区，比基准元素大的元素放在它的右边，比其小的放在它的左边；</p>
+</li>
+<li><p>对左右两个分区重复以上步骤直到所有元素都是有序的。</p>
+</li>
+</ul>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p>三个函数</p>
+<p>基准插入函数：int getStandard(int array[],int low,int high)（返回基准位置下标）</p>
+<p>递归排序函数：void quickSort(int array[],int low,int high)</p>
+<p>主函数：int main()</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int getStandard(int array[], int i, int j) {
+    //基准数据 
+    int key = array[i];
+    while (i &lt; j) {
+            //因为默认基准是从左边开始，所以从右边开始比较 
+            //当队尾的元素大于等于基准数据 时,就一直向前挪动 j 指针 
+            while (i &lt; j &amp;&amp; array[j] &gt;= key) {
+                j--;
+            }
+            //当找到比 array[i] 小的时，就把后面的值 array[j] 赋给它 
+            if (i &lt; j) {
+                array[i] = array[j];
+            }
+            //当队首元素小于等于基准数据 时,就一直向后挪动 i 指针 
+            while (i &lt; j &amp;&amp; array[i] &lt;= key) {
+                i++;
+            }
+            //当找到比 array[j] 大的时，就把前面的值 array[i] 赋给它
+            if (i &lt; j) {
+                array[j] = array[i];
+            }
+        }
+    //跳出循环时 i 和 j 相等,此时的 i 或 j 就是 key 的正确索引位置
+    //把基准数据赋给正确位置 
+    array[i] = key;
+    return i;
+}
+
+void QuickSort(int array[], int low, int high) {
+    //开始默认基准为 low
+    if (low &lt; high) {
+        //分段位置下标 
+        int standard = getStandard(array, low, high);
+        //递归调用排序
+        //左边排序 
+        QuickSort(array, low, standard - 1);
+        //右边排序 
+        QuickSort(array, standard + 1, high);
+    }
+}
+
+void display(int array[], int size) {
+    for (int i = 0; i &lt; size; i++) {
+        printf(&quot;%d &quot;, array[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+int main() {
+    int array[] = { 49,38,65,97,76,13,27,49,10 };
+    int size = sizeof(array) / sizeof(int);
+    printf(&quot;%d \n&quot;, size);
+    QuickSort(array, 0, size - 1);
+    display(array, size);
+    return 0;
+}</code></pre><p>合并到一起快速排序</p>
+<pre><code>void QuickSort(int array[], int low, int high) {
+    int i = low;
+   int j = high;
+    int key = array[i];
+    if (low &lt; high) {
+        while (i &lt; j) {
+            while (i &lt; j &amp;&amp; array[j] &gt;= key) {
+                j--;
+           }
+            if (i &lt; j) {
+                array[i] = array[j];
+            }
+           while (i &lt; j &amp;&amp; array[i] &lt;= key) {
+                i++;
+            }
+            if (i &lt; j) {
+                array[j] = array[i];
+            }
+        }
+       array[i] = key;
+       int standard = i;
+        QuickSort(array, low, standard - 1);
+        QuickSort(array, standard + 1, high);
+    }
+}</code></pre><h2 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h2><p>时间复杂度：</p>
+<ul>
+<li><p>最好：O(n log2 n)</p>
+</li>
+<li><p>最坏：O(n^2)</p>
+</li>
+<li><p>平均：O(n log2 n)</p>
+</li>
+</ul>
+<p>空间复杂度：O(n log2 n)</p>
+<p>稳定性：不稳定</p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 快速排序算法——C/C++ <a href="https://blog.csdn.net/weixin_42109012/article/details/91645051" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42109012/article/details/91645051</a><br>[2] 快速排序（交换排序）——思路及代码实现 <a href="https://blog.csdn.net/Javaprintf/article/details/106969126" target="_blank" rel="noopener">https://blog.csdn.net/Javaprintf/article/details/106969126</a><br>[3] 快速排序算法详细讲解c++版 <a href="https://blog.csdn.net/qq_33060405/article/details/78804674?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/qq_33060405/article/details/78804674?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/15/%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2020-06-15T01:57:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/15/%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/">两个链表的第一个公共节点</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/15/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-06-15T01:06:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/02/%E6%8E%92%E5%BA%8F-%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">排序---简单算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/15/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/">把数组排成最小的数</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/13/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2020-06-13T12:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/13/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/">第一个只出现一次的字符</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-06-13T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/">TCP/IP协议总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/12/%E7%AE%97%E6%B3%95%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-06-12T03:45:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/12/%E7%AE%97%E6%B3%95%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/">算法概念总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/11/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%EF%BC%88%E5%AE%9E%E4%B9%A0%EF%BC%89%E9%9D%A2%E7%BB%8F/" class="archive-article-date">
-  	<time datetime="2020-06-11T07:19:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/11/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%EF%BC%88%E5%AE%9E%E4%B9%A0%EF%BC%89%E9%9D%A2%E7%BB%8F/">字节跳动（实习）面经</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-06-05T02:50:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/">字符串排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-04T03:04:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">二叉树搜索与双向链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/" class="archive-article-date">
-  	<time datetime="2020-06-03T03:15:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/">二叉树中和为某一值的路径</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-03T03:12:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/">二叉树的后序遍历序列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +435,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
