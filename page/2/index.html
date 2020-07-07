@@ -152,6 +152,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-二叉树的定义及性质" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/15/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E6%80%A7%E8%B4%A8/">二叉树的定义及性质</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/15/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E6%80%A7%E8%B4%A8/" class="archive-article-date">
+  	<time datetime="2020-06-15T08:24:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>二叉树是n（n大于等于0）个结点的有限集合，该集合或者为空集（空二叉树），或者由一个根节点和两棵互不相交的、分别称为根节点的左子树和右子树的二叉树组成。</p>
+<p>树的度是树内各结点的度的最大值</p>
+<hr>
+<h2 id="二叉树的特点"><a href="#二叉树的特点" class="headerlink" title="二叉树的特点"></a>二叉树的特点</h2><ul>
+<li><p>每个结点最多有两棵子树，所以二叉树中不存在度大于2的结点。</p>
+</li>
+<li><p>左子树和右子树是有顺序的，次序不能颠倒。</p>
+</li>
+<li><p>即使树中某结点只有一棵子树，也要区分左子树还是右子树。</p>
+</li>
+</ul>
+<p>三个结点的二叉树有五种形态。</p>
+<hr>
+<h2 id="特殊二叉树"><a href="#特殊二叉树" class="headerlink" title="特殊二叉树"></a>特殊二叉树</h2><h3 id="1、-斜树："><a href="#1、-斜树：" class="headerlink" title="1、 斜树："></a>1、 斜树：</h3><p>所有结点只有左斜树的二叉树叫左斜树。线性表结构可以理解成树的一种极其特殊的表现形式。</p>
+<h3 id="2、-满二叉树："><a href="#2、-满二叉树：" class="headerlink" title="2、 满二叉树："></a>2、 满二叉树：</h3><p>如果所有分支结点都存在左子树和右子树，并且所有叶子结点都在同一层上，这样的二叉树称为满二叉树。</p>
+<p>满二叉树特点：</p>
+<p>（1）叶子只能出现在最下一层   </p>
+<p>（2）非叶子结点的度一定是2   </p>
+<p>（3）在同样深度的二叉树中，满二叉树的结点个数最多</p>
+<h3 id="3、-完全二叉树："><a href="#3、-完全二叉树：" class="headerlink" title="3、 完全二叉树："></a>3、 完全二叉树：</h3><p>对一棵具有n个结点的二叉树按层序编号，如果编号为i的结点与同样深度的满二叉树中编号为1的结点在二叉树中位置完全相同，则称为完全二叉树。</p>
+<p>满二叉树一定是完全二叉树，完全二叉树不一定是满二叉树。</p>
+<p>完全二叉树特点：</p>
+<p>（1） 叶子结点只能出现在最下两层</p>
+<p>（2） 最下层的叶子一定集中在左部连续位置</p>
+<p>（3） 倒数二层，若有叶子结点，一定都在右部连续位置</p>
+<p>（4） 如果结点度为 1 ，则该结点只有左孩子</p>
+<p>（5） 同样结点的二叉树，完全二叉树的深度最小</p>
+<hr>
+<h2 id="二叉树的性质"><a href="#二叉树的性质" class="headerlink" title="二叉树的性质"></a>二叉树的性质</h2><p> 性质一：在二叉树的第 i 层上至多有 2^(i-1) 个结点。（ i 大于等于一）</p>
+<p> 性质二：深度为 k 的二叉树至多有 2^k - 1 个结点。（ k 大于等于一）</p>
+<p> 性质三：对任意一棵二叉树 T ，如果其终端结点树为 n0 ，度为二的结点为 n2 ，则 n0 = n2 + 1 </p>
+<p> 性质四：具有 n 个结点的完全二叉树的深度为 [log2(n) + 1]  （[x]表示不大于x的最大整数）</p>
+<p> 性质五：如果对一棵有 n 个结点的完全二叉树的结点暗层编序号，对任一结点 i 有：</p>
+<p> （1） 如果 i = 1 ，则结点 i 是二叉树的根，无双亲；如果 i &gt; 1 ,则其双亲是结点 [i/2]</p>
+<p> （2） 如果 2i &gt; n , 则结点 i 无左孩子；否则其左孩子是结点 2i</p>
+<p> （3） 如果 2i + 1 &gt; n ，则结点 i 无右孩子 ；否则其右孩子是结点 2i + 1</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/15/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E6%80%A7%E8%B4%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-两个链表的第一个公共节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1077,111 +1175,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二叉树的后序遍历序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/">二叉树的后序遍历序列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-03T03:12:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。</p>
-<p>思路：<br>已知条件：后序序列最后一个值为root；二叉搜索树左子树值都比root小，右子树值都比root大。<br>1、确定root；<br>2、遍历序列（除去root结点），找到第一个大于root的位置，则该位置左边为左子树，右边为右子树；<br>3、遍历右子树，若发现有小于root的值，则直接返回false；<br>4、分别判断左子树和右子树是否仍是二叉搜索树（即递归步骤1、2、3）。</p>
-<pre><code>class Solution {
-public:
-    bool VerifySquenceOfBST(vector&lt;int&gt; sequence) {
-        vector&lt;int&gt; leftTree,rightTree;
-        int root; // 根结点
-        if(sequence.empty()) return false;
-        int index = 0; // 标记左右子树界限
-        int len = sequence.size();
-        root = sequence[len-1];
-        int i=0;
-        for(;i&lt;len-1;++i)
-        {
-            if(sequence[i]&gt;root) break; // 找到第一个大于根结点的位置，则左边为左子树，右边为右子树
-        }
-        for(int j=i;j&lt;len-1;++j) // 循环时去除root，因此为len-1
-        {
-            if(sequence[j]&lt;root) return false; // 有一个小于root，则返回false
-        }
-
-        if(i&gt;0)
-        {
-            // 即有左子树
-            for(int m=0;m&lt;i;++m)
-            {
-                leftTree.push_back(sequence[m]);
-            }
-        }
-        if(i&lt;len-1)
-        {
-            for(int j=i;j&lt;len-1;++j)
-            {
-                rightTree.push_back(sequence[j]);
-            }
-        }
-
-        bool left = true,right = true; // 看左右子树是否是二叉搜索树
-        if(leftTree.size()&gt;1) VerifySquenceOfBST(leftTree);
-        if(rightTree.size()&gt;1) VerifySquenceOfBST(rightTree);
-
-        return (left&amp;&amp;right);
-    }
-};</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/">展开全文 >></a>
         </p>
       
 
