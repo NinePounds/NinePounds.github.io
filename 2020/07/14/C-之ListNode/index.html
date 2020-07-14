@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/7 | NinePounds的博客</title>
+  <title>C++之ListNode | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NinePounds的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
+  <meta name="description" content="ListNode的结构struct ListNode {       int val;  &#x2F;&#x2F;当前结点的值       ListNode *next;  &#x2F;&#x2F;指向下一个结点的指针       ListNode(int x) : val(x), next(NULL) {}  &#x2F;&#x2F;初始化当前结点值为x,指针为空   };如何向ListNode中插入新的结点：从键盘输入ListNode* temp1 &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之ListNode">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/C-%E4%B9%8BListNode/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
+<meta property="og:description" content="ListNode的结构struct ListNode {       int val;  &#x2F;&#x2F;当前结点的值       ListNode *next;  &#x2F;&#x2F;指向下一个结点的指针       ListNode(int x) : val(x), next(NULL) {}  &#x2F;&#x2F;初始化当前结点值为x,指针为空   };如何向ListNode中插入新的结点：从键盘输入ListNode* temp1 &#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T14:31:29.000Z">
+<meta property="article:modified_time" content="2020-07-14T14:40:16.207Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -150,130 +154,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C-之ListNode" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++之ListNode
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/14/C-%E4%B9%8BListNode/" class="archive-article-date">
+
+        
+        <a href="/2020/07/14/C-%E4%B9%8BListNode/" class="archive-article-date">
   	<time datetime="2020-07-14T14:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/14/C-%E4%B9%8BListNode/">C++之ListNode</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ListNode的结构"><a href="#ListNode的结构" class="headerlink" title="ListNode的结构"></a>ListNode的结构</h2><pre><code>struct ListNode {
+      int val;  //当前结点的值
+      ListNode *next;  //指向下一个结点的指针
+      ListNode(int x) : val(x), next(NULL) {}  //初始化当前结点值为x,指针为空
+  };</code></pre><h2 id="如何向ListNode中插入新的结点：从键盘输入"><a href="#如何向ListNode中插入新的结点：从键盘输入" class="headerlink" title="如何向ListNode中插入新的结点：从键盘输入"></a>如何向ListNode中插入新的结点：从键盘输入</h2><pre><code>ListNode* temp1 = new Solution::ListNode(0); //创建新元素，
+ListNode* l1 = temp1; //最后的结果l1指向temp1，这样可以获取temp所接收的全部元素，而temp的指针由于每次都往下移，所以每次都更新
 
-        <div class="article-info info-on-right">
-          
-          
+while ((c = getchar()) != &apos;\n&apos;)   //以空格区分各个结点的值
+        {
+            if (c != &apos; &apos;)
+            {
+                ungetc(c, stdin);  //把不是空格的字符丢回去
+                cin &gt;&gt; num;
+                Solution::ListNode* newnode = new Solution::ListNode(0);
+                newnode-&gt;val = num;//创建新的结点存放键盘中读入的值
+                newnode-&gt;next = NULL;
+                temp2-&gt;next = newnode;//并将其赋值给temp2
+                temp2 = newnode; //此处也可以写成  temp2=temp2-&gt;next,使指针指向下一个，以待接收新元素
+            }
+        }</code></pre><h2 id="ListNode-list-new-ListNode-0"><a href="#ListNode-list-new-ListNode-0" class="headerlink" title="ListNode list = new ListNode(0)"></a>ListNode list = new ListNode(0)</h2><ul>
+<li><p>ListNode list=new ListNode() 初始化一个空节点，无值,不提倡此种写法。</p>
+</li>
+<li><p>ListNode list=new ListNode(0) 初始化一个节点值为0的空节点，最常用最正规写法</p>
+</li>
+<li><p>ListNode list=null 为空，什么都没有，一般不这么写；</p>
+</li>
+</ul>
+<h2 id="关于malloc"><a href="#关于malloc" class="headerlink" title="关于malloc"></a>关于malloc</h2><p>它是一个函数，原型是void *malloc(size_t size); </p>
+<p>前面提过了，就是分配size个字节的内存，然后返回指向这段内存首字节的指针，</p>
+<p>void* 表示未确定类型的指针，void *可以指向任何类型的数据，更明确的说是指申请内存空间时还不知道用户是用这段空间来存储什么类型的数据（比如是char还是int或者…），所以你要用它指向什么数据，一般就要在malloc前加一个强制转换，把这个指针转为适合你使用的类型。</p>
+<p>(Node *)malloc(sizeof(Node))是指在malloc成功后返回一个Node类型的指针</p>
+<h2 id="返回链表的倒数第K个结点"><a href="#返回链表的倒数第K个结点" class="headerlink" title="返回链表的倒数第K个结点"></a>返回链表的倒数第K个结点</h2><pre><code>//调试时，显示数组越界等问题，原因是该题倒数第0个结点比较扯，给出结果为0，题意并未提示
+#include&lt;iostream&gt;
+using namespace std;
+struct ListNode{
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(NULL){}//初始化当前结点值为x,指针为空
+};
+int main(){
+    int nums;
+    while(cin &gt;&gt; nums){
+        ListNode *pHead = new ListNode(0);//初始化一个节点值为0的空节点，最常用最正规写法
+        ListNode *p = pHead;
+        for(int i = 0; i &lt; nums; ++i){
+            int data;
+            cin &gt;&gt; data;
+            ListNode *q = new ListNode(data);
+            p-&gt;next = q;
+            p = p-&gt;next;
+        }
+        int Kth;
+        cin &gt;&gt; Kth;
+        p = pHead;
+        if(Kth == 0)  // 边界测试
+            cout &lt;&lt; &quot;0&quot; &lt;&lt; endl;
+        else if(nums-Kth &gt;= 0){
+            for(int i = 0; i &lt;= nums-Kth; ++i)
+                p = p-&gt;next;
+            cout &lt;&lt; p-&gt;val &lt;&lt; endl;
+        }
+        else
+            cout &lt;&lt; &quot;NULL&quot; &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre><hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] C++之ListNode  <a href="https://www.cnblogs.com/xiaoxue126/p/9015541.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxue126/p/9015541.html</a><br>[2] 关于malloc和sizeof的用法  <a href="https://www.cnblogs.com/shamoguzhou/p/6847577.html" target="_blank" rel="noopener">https://www.cnblogs.com/shamoguzhou/p/6847577.html</a><br>[3] ListNode list=new ListNode()  <a href="https://blog.csdn.net/woshiwangxin0/article/details/99696978" target="_blank" rel="noopener">https://blog.csdn.net/woshiwangxin0/article/details/99696978</a></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/14/C-%E4%B9%8BListNode/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/" class="archive-article-date">
-  	<time datetime="2020-07-07T11:18:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">M序列产生原理及其性质</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/">M序列产生原理及其性质</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-07-03T02:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/02/%E6%8E%92%E5%BA%8F-%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-07-02T02:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/02/%E6%8E%92%E5%BA%8F-%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95/">排序---简单算法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -296,8 +392,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
