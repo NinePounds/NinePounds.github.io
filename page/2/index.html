@@ -152,6 +152,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-二叉树的深度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/">二叉树的深度</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" class="archive-article-date">
+  	<time datetime="2020-06-17T06:28:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二叉树的深度"><a href="#二叉树的深度" class="headerlink" title="二叉树的深度"></a>二叉树的深度</h2><p>利用递归算法即可实现</p>
+<pre><code>class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot){
+        if(!pRoot) return 0 ;
+            return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));
+    }
+};</code></pre><p>max即返回两个数的最大值，1+TreeDepth(pRoot-&gt;left)，1 可看为是当前层数，加上下一结点的层数，递归。</p>
+<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>每个节点的左右子树的深度相差不超过1，就是一棵平衡二叉树。</p>
+<p>可以与二叉树的深度相结合</p>
+<pre><code>class Solution {
+        public:
+            int TreeDepth(TreeNode* pRoot){
+                if(!pRoot) return 0 ;
+                    return max(1+TreeDepth(pRoot-&gt;left), 1+TreeDepth(pRoot-&gt;right));
+            }
+
+            bool IsBalanced(BinaryTree* pRoot)
+            {
+                if(pRoot == nullptr)
+                    return true;
+
+                int left = TreeDepth(pRoot -&gt; left);
+                int right = TreeDepth(pRoot -&gt; right);
+                int dif = left - right;
+
+                if(dif &gt;1 || dif &lt; -1)
+                    return false;
+
+                return IsBalanced(pRoot -&gt; left) &amp;&amp;  IsBalanced( pRoot -&gt; right);
+            }
+        };</code></pre><p>但是一个节点会被重复遍历，效率不高。可以采用后序遍历的方法，在遍历到第一个节点之前就已经遍历的他的左右子树。</p>
+<pre><code>class Solution {
+public:
+    bool IsBalanced(TreeNode *root, int &amp; dep){
+        if(root == NULL){
+            return true;
+        }
+        int left = 0;
+        int right = 0;
+        if(IsBalanced(root-&gt;left,left) &amp;&amp; IsBalanced(root-&gt;right, right)){
+            int dif = left - right;
+            if(dif&lt;-1 || dif &gt;1)
+                return false;
+            dep = (left &gt; right ? left : right) + 1;
+            return true;
+        }
+        return false;
+    }
+    bool IsBalanced_Solution(TreeNode* pRoot) {
+        int dep = 0;
+        return IsBalanced(pRoot, dep);
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/17/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-在排序的数组中查找数字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1122,102 +1237,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二叉树搜索与双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">二叉树搜索与双向链表</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-04T03:04:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
-<p>在二叉树中每个节点都有两个指向子节点的指针。在双向链表中，每个节点也有两个指针，分别指向前一个节点和后一个节点。</p>
-<p>可以把问题分成三个部分：根节点、左子树、右子树。</p>
-<p>按照中序遍历，中序遍历算法的特点是按照从小到大的顺序遍历二叉树的每个节点。</p>
-<p>递归主要看返回的值。</p>
-<pre><code>class Solution {
-public:
-    TreeNode* Convert(TreeNode* pRootOfTree)
-    {
-        if(pRootOfTree == nullptr) return nullptr;
-        TreeNode* pre = nullptr;
-
-        convertHelper(pRootOfTree, pre);
-
-        TreeNode* res = pRootOfTree;
-        while(res -&gt;left)             //调用结束后应将指针移动到头指针
-            res = res -&gt;left;
-        return res;
-    }
-
-    void convertHelper(TreeNode* cur, TreeNode*&amp; pre)
-    {
-        if(cur == nullptr) return;
-
-        convertHelper(cur -&gt;left, pre);
-
-        cur -&gt;left = pre;            //链表双向的过程
-        if(pre) pre -&gt;right = cur;
-
-
-        pre = cur;
-
-        convertHelper(cur -&gt;right, pre);
-    }
-};</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
         </p>
       
 

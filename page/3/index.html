@@ -152,6 +152,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-二叉树搜索与双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">二叉树搜索与双向链表</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2020-06-04T03:04:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+<p>在二叉树中每个节点都有两个指向子节点的指针。在双向链表中，每个节点也有两个指针，分别指向前一个节点和后一个节点。</p>
+<p>可以把问题分成三个部分：根节点、左子树、右子树。</p>
+<p>按照中序遍历，中序遍历算法的特点是按照从小到大的顺序遍历二叉树的每个节点。</p>
+<p>递归主要看返回的值。</p>
+<pre><code>class Solution {
+public:
+    TreeNode* Convert(TreeNode* pRootOfTree)
+    {
+        if(pRootOfTree == nullptr) return nullptr;
+        TreeNode* pre = nullptr;
+
+        convertHelper(pRootOfTree, pre);
+
+        TreeNode* res = pRootOfTree;
+        while(res -&gt;left)             //调用结束后应将指针移动到头指针
+            res = res -&gt;left;
+        return res;
+    }
+
+    void convertHelper(TreeNode* cur, TreeNode*&amp; pre)
+    {
+        if(cur == nullptr) return;
+
+        convertHelper(cur -&gt;left, pre);
+
+        cur -&gt;left = pre;            //链表双向的过程
+        if(pre) pre -&gt;right = cur;
+
+
+        pre = cur;
+
+        convertHelper(cur -&gt;right, pre);
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二叉树中和为某一值的路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1004,108 +1100,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数值的整数次方" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/">数值的整数次方</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/" class="archive-article-date">
-  	<time datetime="2020-05-18T11:49:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>考虑问题要全面，数值包括正数负数和零，如果以最简单的方法累计相乘，则零和负数会出现问题。<br>可以使用递归的方法既全面又高效。时间复杂度为O（logn）。</p>
-<h2 id="试题"><a href="#试题" class="headerlink" title="试题"></a>试题</h2><p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</p>
-<pre><code>class Solution {
-public:
-    double Power(double base, int exponent) {
-    double res = 1,curr = base;
-    int e;
-    if(exponent&gt;0)
-        e = exponent;
-    else if(exponent&lt;0)
-    {
-        if(base==0)
-            throw (&quot;分母不能为0&quot;); 
-        e = -exponent;
-    }
-    else// n==0
-        return 1;// 0的0次方
-    while(e!=0){                     
-        if((e&amp;1)==1)          //首先判断是否为奇数，当为奇数时，先使res等于base
-            res*=curr;
-        curr*=curr;// 翻倍
-        e&gt;&gt;=1;// 右移一位
-    }        
-    return exponent&gt;=0?res:(1/res);       
-    }
-};        </code></pre><p>思路：执行while时，奇数会执行两次if语句，第一次和最后一次。而偶数只在最后一次运行if。因为最后都会到1，奇数。最后0，跳出循环。</p>
-<p>递归方法：</p>
-<pre><code>double P(double base , unsigned int exponent)
-{
-    if(exponent == 0)
-        return 1;
-    if(exponent == 1)
-        return base;
-
-    double result = P(base , exponent &gt;&gt; 1);  //右移相当于除以二，高效
-    result *= result;
-    if(exponent&amp;1 == 1)                       //用位与运算符代替了求余运算符（%）来判断是一个奇数还是偶数
-        result *= base;
-
-    return result;    
-}</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/18/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/">展开全文 >></a>
         </p>
       
 
