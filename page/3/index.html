@@ -152,6 +152,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符串排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/">字符串排序</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-06-05T02:50:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。(可能有字符重复)</p>
+<p>思路：递归法，问题转换为先固定第一个字符，求剩余字符的排列；求剩余字符排列时跟原问题一样。<br>(1) 遍历出所有可能出现在第一个位置的字符（即：依次将第一个字符同后面所有字符交换）；<br>(2) 固定第一个字符，求后面字符的排列（即：在第1步的遍历过程中，插入递归进行实现）。<br>需要注意的几点：<br>(1) 先确定递归结束的条件，例如本题中可设begin == str.size() - 1;<br>(2) 形如 aba 或 aa 等特殊测试用例的情况，vector在进行push_back时是不考虑重复情况的，需要自行控制；<br>(3) 输出的排列可能不是按字典顺序排列的，可能导致无法完全通过测试用例，考虑输出前排序，或者递归之后取消复位操作。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;string&gt; Permutation(string str)
+    {
+        vector&lt;string&gt; result;
+        if(str.empty()) return result;
+
+        Permutation(str,result,0);
+
+        // 此时得到的result中排列并不是字典顺序，可以单独再排下序
+        sort(result.begin(),result.end());
+
+        return result;
+    }
+
+    void Permutation(string str,vector&lt;string&gt; &amp;result,int begin)
+    {
+        if(begin == str.size()-1) // 递归结束条件：索引已经指向str最后一个元素时
+        {
+            if(find(result.begin(),result.end(),str) == result.end())
+            {
+                // 如果result中不存在str，才添加；避免aa和aa重复添加的情况
+                result.push_back(str);
+            }
+        }
+        else
+        {
+            // 第一次循环i与begin相等，相当于第一个位置自身交换，关键在于之后的循环，
+            // 之后i != begin，则会交换两个不同位置上的字符，直到begin==str.size()-1，进行输出；
+            for(int i=begin;i&lt;str.size();++i)
+            {
+                swap(str[i],str[begin]);
+                Permutation(str,result,begin+1);
+                swap(str[i],str[begin]); // 复位，用以恢复之前字符串顺序，达到第一位依次跟其他位交换的目的
+            }
+        }
+    }
+
+    void swap(char &amp;fir,char &amp;sec)
+    {
+        char temp = fir;
+        fir = sec;
+        sec = temp;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二叉树搜索与双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1015,123 +1123,9 @@ public:
 
 
   
-    <article id="post-调整数组顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/">调整数组顺序</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-05-19T06:09:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先，如果不要求对应位置的话，利用如下方法可以很快得到结果。时间复杂度为O(n)。</p>
-<pre><code>class Solution {
-public:
-    void reOrderArray(vector&lt;int&gt; &amp;array) {
-        int begin = 0;
-        int end = array.size() - 1;
-        while(begin &lt; end )
-        {
-            while(begin &lt; end &amp;&amp; (array[begin] &amp; 1)!=0 )
-                begin++;
-
-            while(begin &lt; end &amp;&amp; (array[end] &amp; 1)==0 )
-                end--;
-            swap(array[end], array[begin]);
-        }
-    }
-};</code></pre><p>但是如果要求奇偶之间的相对位置不变。如[1,2,3,4,5,6,7]对应输出应该为:[1,3,5,7,2,4,6]。上述方法不适用。可以采用一下两种方法</p>
-<p>第一种是类似冒泡排序的方法，前偶后奇数就交换，但是时间复杂度较高。</p>
-<pre><code>class Solution {
-public:
-    void reOrderArray(vector&lt;int&gt; &amp;array) {
-
-        for (int i = 0; i &lt; array.size();i++)
-        {
-            for (int j = array.size() - 1; j&gt;i;j--)
-            {
-                if (array[j] % 2 == 1 &amp;&amp; array[j - 1]%2 == 0) //前偶后奇交换
-                {
-                    swap(array[j], array[j-1]);
-                }
-            }
-        }
-    }
-};</code></pre><p>第二种是利用空间换时间，重新添加一个数组，先把遍历到的奇数存入新数组，再存入偶数进新数组。但是存入负数的话可能会有些问题。</p>
-<pre><code>class Solution {
-public:
-    void reOrderArray(vector&lt;int&gt; &amp;array) {
-        vector&lt;int&gt; res;
-        for(int i = 0; i &lt; array.size(); i++)
-        {
-            if(array[i] % 2 == 1)
-                res.push_back(array[i]);
-        }
-        for(int i = 0; i &lt; array.size(); i++)
-        {
-            if(array[i] % 2 == 0)
-                res.push_back(array[i]);
-        }
-        //array.swap(res);
-        array = res;
-
-    }
-};</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/19/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
