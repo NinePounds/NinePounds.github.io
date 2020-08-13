@@ -152,6 +152,120 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-DFS——矩阵中的路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/13/DFS%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">DFS——矩阵中的路径</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/13/DFS%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/" class="archive-article-date">
+  	<time datetime="2020-08-13T03:50:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>深度优先搜索（缩写DFS）有点类似广度优先搜索，也是对一个连通图进行遍历的算法。它的思想是从一个顶点V0开始，沿着一条路一直走到底，如果发现不能到达目标解，那就返回到上一个节点，然后从另一条路开始走到底，这种尽量往深处走的概念即是深度优先的概念。</p>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如 a b c e s f c s a d e e 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
+<p>思路：</p>
+<p>0.根据给定数组，初始化一个标志位数组，初始化为false，表示未走过，true表示已经走过，不能走第二次</p>
+<p>1.根据行数和列数，遍历数组，先找到一个与str字符串的第一个元素相匹配的矩阵元素，进入judge</p>
+<p>2.根据i和j先确定一维数组的位置，因为给定的matrix是一个一维数组</p>
+<p>3.确定递归终止条件：越界，当前找到的矩阵值不等于数组对应位置的值，已经走过的，这三类情况，都直接false，说明这条路不通</p>
+<p>4.若字符串已经查找结束，就是待判定的字符串str的索引已经判断到了最后一位，此时说明是匹配成功的</p>
+<p>5.下面就是本题的精髓，递归不断地寻找周围四个格子是否符合条件，只要有一个格子符合条件，就继续再找这个符合条件的格子的四周是否存在符合条件的格子，直到k到达末尾或者不满足递归条件就停止。</p>
+<p>6.走到这一步，说明本次是不成功的，我们要还原一下标志位数组index处的标志位，进入下一轮的判断。</p>
+<pre><code>class Solution {
+public:
+    bool hasPath(char* matrix, int rows, int cols, char* str)
+    {
+       if(matrix==NULL||rows&lt;1||cols&lt;1||str==NULL) return false;
+       bool *flag=new bool[rows*cols];
+       memset(flag,false,rows*cols);
+       for(int i=0;i&lt;rows;i++)
+       {
+           for(int j=0;j&lt;cols;j++)
+           {
+               if(haha(matrix,rows,cols,i, j,str,0,flag))
+               {
+                   return true;
+               }
+           }
+       }
+        delete[] flag;
+        return false;
+    }
+     /*参数说明*/
+    bool haha(char* matrix,int rows,int cols,int i,int j,char* str,int k,bool* flag)
+    {
+        //因为是一维数组存放二维的值，index值就是相当于二维数组的（i，j）在一维数组的下标
+       int index = i * cols + j;
+        //flag[index]==true,说明被访问过了，那么也返回true;
+       if(i&lt;0 || i&gt;=rows || j&lt;0 || j&gt;=cols || matrix[index]!=str[k] || flag[index]==true)
+               return false;
+        //字符串已经查找结束，说明找到该路径了
+       if(str[k+1]==&apos;\0&apos;) return true;
+        //向四个方向进行递归查找,向左，向右，向上，向下查找
+       flag[index] = true;//标记访问过
+       if(  haha(matrix, rows, cols, i - 1, j,     str, k + 1, flag)
+          ||haha(matrix, rows, cols, i + 1, j,     str, k + 1, flag)
+          ||haha(matrix, rows, cols, i,     j - 1, str, k + 1, flag)
+          ||haha(matrix, rows, cols, i,     j + 1, str, k + 1, flag))
+        {
+            return true;
+        }
+        flag[index] = false;
+        return false;
+    }
+};</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/13/DFS%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数字序列第n位的值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1251,127 +1365,6 @@ int main()
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-和为S的数字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/">和为S的数字</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/" class="archive-article-date">
-  	<time datetime="2020-06-18T03:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="和为S的两个数字"><a href="#和为S的两个数字" class="headerlink" title="和为S的两个数字"></a>和为S的两个数字</h2><p>输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和刚好等于S，如有多对数字和等于S，则输出任意一对即可。</p>
-<p>思路：因为数组已经安排好了，所以定义两个指针，一个指向第一个数字ahead，一个指向最后一个数字behind，当和大于S，则behind向前移动；如果小于S则ahead向后移动。</p>
-<pre><code>bool FindNumber(int data[], int length, int sum, int* num1, int* num2)
-{
-    bool found = false;
-    if(length &lt; 1 || num1 == nullptr || num2 == nullptr)
-        return found;
-
-    int ahead = 0;
-    int behind = length - 1;
-
-    while(behind &gt; ahead)
-    {
-        long cur = data[ahead] + data[behind];
-
-        if(cur == sum)
-        {
-            *num1 = data[ahead];
-            *num2 = data[behind];
-            found = true;
-            break;
-        }
-        else if(cur &gt; sum)
-            behind--;
-        else
-            ahead++;
-    }
-    return found;
-}</code></pre><hr>
-<h2 id="和为S的连续正序列"><a href="#和为S的连续正序列" class="headerlink" title="和为S的连续正序列"></a>和为S的连续正序列</h2><p>输出所有和为S的连续正数序列。序列内按照从小至大的顺序，序列间按照开始数字从小到大的顺序</p>
-<p>思路：双指针问题，当总和小于sum，大指针继续+，否则小指针+</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt; &gt; FindContinuousSequence(int sum) {
-        vector&lt;vector&lt;int&gt; &gt; allRes;
-        int phigh = 2,plow = 1;
-
-        while(phigh &gt; plow){
-            int cur = (phigh + plow) * (phigh - plow + 1) / 2;  // 求和公式，首项加末项乘以项数除以二
-            if( cur &lt; sum)
-                phigh++;
-
-            if( cur == sum){
-                vector&lt;int&gt; res;
-                for(int i = plow; i&lt;=phigh; i++)
-                    res.push_back(i);
-                allRes.push_back(res);
-                plow++;
-            }
-
-            if(cur &gt; sum)
-                plow++;
-        }
-
-        return allRes;
-    }
-};</code></pre><p>为什么要定义二位数组呢？ 因为可能有多个和为S的连续正数序列，将子序列放入定义好的二位数组里面输出。</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 关于C++中vector&lt;vector<int> &gt;的使用 <a href="https://www.cnblogs.com/tyty-Somnuspoppy/p/9361821.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyty-Somnuspoppy/p/9361821.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/%E5%92%8C%E4%B8%BAS%E7%9A%84%E6%95%B0%E5%AD%97/">展开全文 >></a>
         </p>
       
 
