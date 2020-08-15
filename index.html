@@ -152,6 +152,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符串相似度（动态规划）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/15/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89/">字符串相似度（动态规划）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/15/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-08-15T12:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>思路：题目要求最少的编辑次数，且对于两个字符串，删除最后一个字符，求此时的最少编辑次数和之前的求法是一样的，因此就转换为求子问题，所以可以用动态规划来解决。</p>
+<p>动态规划步骤：</p>
+<p>dp含义：题目求有str1编辑为str2的最少步骤，因此可以让dp[i][j]表示为从str1前i个字符编辑为str2前j个字符需要的最少的步骤。</p>
+<p>状态转移方程：</p>
+<p>题目中说明可以由3种方法对字符串进行操作，其实共有4种，第4种就是对字符不操作。分开来说（为了保证不越界，我一般做dp开辟的空间都比原对象大1，因此dp中的i和j，对应字符串中的i-1和j-1）</p>
+<p>第1种：修改。对于dp[i][j]来说，可以通过修改第str1[i-1]字符使其和str2[j-1]字符相同。如果这两个字符本来就相同，那么就不需要操作，即dp[i][j] = dp[i-1][j-1]；如果这两个字符不相同，需要对str1[i-1]这个字符进行修改，因此操作数增加1，即dp[i][j] = dp[i-1][j-1] + 1。</p>
+<p>第2种：增加。即在字符串str1[0到i-2]的基础上增加一个字符str1[i-1]，使其和字符串str2[0到j-1]相同，因此操作数加1，即dp[i][j] = dp[i-1][j] + 1。</p>
+<p>第3中：删除（反向增加，不太好理解）。即在字符串str2[0到j-2]的基础上增加一个字符str2[j-1]，使其和字符串str1[0到i-1]相同，因此操作数加1，即dp[i][j] = dp[i][j-1] + 1。</p>
+<p>对于每一步，求这3种情况中的最小值。</p>
+<p>初始值：对于dp[i][0]，即将str1[0到i]变为空串，需要的操作数，则dp[i][0] = i，对于dp[0][j]同理。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main ()
+{ 
+    string s1,s2;
+    while( cin&gt;&gt;s1&gt;&gt;s2)
+    {
+        int len1 = s1.size();
+        int len2 = s2.size();
+        vector&lt;vector&lt;int&gt;&gt; dp(len1+1, vector&lt;int&gt;(len2+1,0));
+
+        for(int i = 0; i &lt;= len1; i++)
+            dp[i][0] = i;
+        for(int i = 0; i &lt;= len2; i++)
+            dp[0][i] = i;
+        //
+        for(int i = 1; i &lt;= len1; i++){
+            for(int j = 1; j &lt;= len2; j++){
+                if(s1[i-1] == s2[j-1])
+                    dp[i][j] = dp[i-1][j-1];
+                else{
+                    int tmp = min(dp[i-1][j], dp[i][j-1]);
+                    dp[i][j] = 1 + min(tmp, dp[i-1][j-1]);
+                }
+            }
+        }
+       cout&lt;&lt;&apos;1&apos;&lt;&lt;&apos;/&apos;&lt;&lt;(dp[len1][len2]+1)&lt;&lt;endl;
+    }
+
+  return 0;
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/15/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-DFS——矩阵中的路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1219,152 +1324,6 @@ void InsertSort(vector&lt;int&gt; &amp;vi)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-翻转字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">翻转字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2020-06-28T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>翻转字符串无外乎就是翻转的次数，即翻转再翻转，通常是先翻转整个句子，再翻转单词顺序。</p>
-<pre><code>class Solution {
-public:
-    void ReverseWord(string &amp;str, int s, int e)
-        {
-            while(s &lt; e)
-                swap(str[s++], str[e--]);
-        }
-    string ReverseSentence(string str) {
-        ReverseWord(str, 0, str.size() - 1); //先整体翻转
-        int s = 0;
-        int i = 0;
-        while(i &lt; str.size())
-        {
-            if(i &lt; str.size() &amp;&amp; str[i] == &apos; &apos;) //空格跳过
-                i++;
-            s = i; //记录单词的第一个字符的位置
-            while(i &lt; str.size() &amp;&amp; str[i] != &apos; &apos;) //不是空格找单词最后一个字符的位置
-                i++;
-            ReverseWord(str, s, i - 1); //局部翻转
-        }
-        return str;
-    }
-};</code></pre><p>左旋转字符串（例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”）旋转三次即可。</p>
-<ul>
-<li><p>第一次旋转： 将前 n 位旋转。</p>
-</li>
-<li><p>第二次旋转： 将 n ~ len - 1 位旋转。（len 位字符串长度 ; len = S.size()）</p>
-</li>
-<li><p>第三次旋转： 将整个句子翻转旋转。</p>
-<pre><code>class Solution {
-        public:
-            void Reverse(string &amp;s,int start,int end)
-            {
-                char temp;
-                while(start&lt;end)
-                {
-                    temp=s[start];
-                    s[start]=s[end];
-                    s[end]=temp;
-                    start++;
-                    end--;
-                }
-            }
-            string LeftRotateString(string str, int n) {
-                int len=str.length();
-                if(0==len || 0==n)
-                    return str;
-                string &amp;temp=str;
-                Reverse(temp,0,n-1);
-                Reverse(temp,n,len-1);
-                Reverse(temp,0,len-1);
-                return str;
-            }
-        };</code></pre></li>
-</ul>
-<hr>
-<h2 id="巧妙解法"><a href="#巧妙解法" class="headerlink" title="巧妙解法"></a>巧妙解法</h2><p>但是还有另外一种巧妙地方法，左旋转其实也等于两个相同的字符串排列在一起，从第 n 位开始到 len - 1</p>
-<pre><code>class Solution {
-public:
-    string LeftRotateString(string str, int n) {
-        int len = str.length();
-        if(len == 0) return &quot;&quot;;
-        n = n % len;       // 防止 n 超过字符串长度
-        str += str;
-        return str.substr(n, len);
-    }
-};</code></pre><h3 id="C-中substr函数的用法"><a href="#C-中substr函数的用法" class="headerlink" title="C++中substr函数的用法"></a>C++中substr函数的用法</h3><pre><code>#include&lt;string&gt;
-
-#include&lt;iostream&gt;
-
-using namespace std;
-
-int main()
-
-{
-
-　　string s(&quot;12345asdf&quot;);
-
-　　string a = s.substr(0,5);     //获得字符串s中从第0位开始的长度为5的字符串
-
-　　cout &lt;&lt; a &lt;&lt; endl;
-
-} </code></pre><p>输出结果为：12345</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/28/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
         </p>
       
 

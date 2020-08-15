@@ -152,6 +152,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-TCP-IP协议总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/">TCP/IP协议总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-06-13T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="https://zhuanlan.zhihu.com/p/33889997" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33889997</a><br>[2] <a href="https://blog.csdn.net/u011318165/article/details/48102939" target="_blank" rel="noopener">https://blog.csdn.net/u011318165/article/details/48102939</a><br>[3] <a href="https://www.cnblogs.com/fengzanfeng/articles/1339347.html" target="_blank" rel="noopener">https://www.cnblogs.com/fengzanfeng/articles/1339347.html</a><br>[4] <a href="https://blog.csdn.net/cclliii/article/details/82932851" target="_blank" rel="noopener">https://blog.csdn.net/cclliii/article/details/82932851</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/13/TCP-IP%E5%8D%8F%E8%AE%AE%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-算法概念总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1104,104 +1168,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AF%B9%E7%A7%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-树的子结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">树的子结构</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-05-22T01:51:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）</p>
-<p>首先需要注意的是：与二叉树相关的代码有大量的指针操作，每次使用的时候都要先问问自己这个指针有没有可能是nullptr，如果是该怎么处理。</p>
-<pre><code>class Solution {
-public:
-    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
-    {
-        bool result = false;
-        if(pRoot1 != nullptr &amp;&amp; pRoot2!= nullptr) //当Tree1和Tree2都不为零的时候，才进行比较。否则直接返回false
-        {
-            if(pRoot1 -&gt; val == pRoot2 -&gt; val)//如果找到了对应Tree2的根节点的点
-                result = DoesTree(pRoot1,pRoot2);//以这个根节点为为起点判断是否包含Tree2
-            if(!result)
-                result = HasSubtree(pRoot1 -&gt; left,pRoot2); //如果找不到，那么就再去root的左儿子当作起点，去判断时候包含Tree2
-            if(!result)
-                result = HasSubtree(pRoot1 -&gt; right,pRoot2);//如果还找不到，那么就再去root的右儿子当作起点，去判断时候包含Tree2
-        }
-        return result;
-    }
-    bool DoesTree(TreeNode* pRoot1,TreeNode* pRoot2)
-    {
-        if(pRoot2 == nullptr)//如果Tree2已经遍历完了都能对应的上，返回true
-            return true;
-        if(pRoot1 == nullptr)//如果Tree2还没有遍历完，Tree1却遍历完了。返回false
-            return false;
-        if(pRoot1 -&gt; val != pRoot2 -&gt; val)//如果其中有一个点没有对应上，返回false
-            return false;
-        return DoesTree(pRoot1 -&gt; left,pRoot2 -&gt; left)&amp;&amp; DoesTree(pRoot1 -&gt; right,pRoot2 -&gt; right);
-        //如果根节点对应的上，那么就分别去子节点里面匹配
-    }
-};</code></pre><p>整体思路：整个程序采用遍历的方法，代码比较简洁。</p>
-<ul>
-<li>首先定义结果为false，当Tree1和Tree2为零时，直接返回false。</li>
-<li>然后判断两个树的根节点是否相等，当相等时，调用子程序进行遍历判断。不相等时，先将根节点向左移动。当左边没有匹配项时再向右移动根节点。</li>
-<li>首先，当Tree2遍历完成还没有出现错误，即可认为都能对应上，即有与Tree1相同的结构，返回true。当Tree1先遍历完成，则返回false。然后进行递归，让Tree1和Tree2的根节点同时移动比较。</li>
-</ul>
-<p>Tips: 在判断两个节点的值是否相等时最好不要用pRoot1 -&gt; val == pRoot2 -&gt; val，因为计算机在表示小数的时候（包括float和double）都有误差。判断两个小数是否相等，只能判断他们之差的绝对值是不是在一个很小的范围内。如果两个数相差很小，就可以认为他们相等。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/22/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">展开全文 >></a>
         </p>
       
 
