@@ -152,6 +152,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-B树、B-树、红黑树总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/">B树、B+树、红黑树总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-08-18T03:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><p>基本原理</p>
+<p>首先，简单说一下B树产生的原因。B树是一种查找树，我们知道，这一类树（比如二叉查找树，红黑树等等）最初生成的目的都是为了解决某种系统中，查找效率低的问题。B树也是如此，它最初启发于二叉查找树，二叉查找树的特点是每个非叶节点都只有两个孩子节点。然而这种做法会导致当数据量非常大时，二叉查找树的深度过深，搜索算法自根节点向下搜索时，需要访问的节点也就变的相当多。如果这些节点存储在外存储器中，每访问一个节点，相当于就是进行了一次I/O操作，随着树高度的增加，频繁的I/O操作一定会降低查询的效率。</p>
+<p>B树也称B-树,它是一颗多路平衡查找树。二叉树我想大家都不陌生，其实，B树和后面讲到的B+树也是从最简单的二叉树变换而来的，并没有什么神秘的地方，下面我们来看看B树的定义。</p>
+<p>每个节点最多有m-1个关键字（可以存有的键值对）。</p>
+<p>根节点最少可以只有1个关键字。</p>
+<p>非根节点至少有m/2个关键字。</p>
+<p>每个节点中的关键字都按照从小到大的顺序排列，每个关键字的左子树中的所有关键字都小于它，而右子树中的所有关键字都大于它。</p>
+<p>所有叶子节点都位于同一层，或者说根节点到每个叶子节点的长度都相同。</p>
+<p>每个节点都存有索引和数据，也就是对应的key和value。</p>
+<p>B树是为了磁盘或其它存储设备而设计的一种多叉（下面你会看到，相对于二叉，B树每个内结点有多个分支，即多叉）平衡查找树。与本blog之前介绍的红黑树很相似，但在降低磁盘I/0操作方面要更好一些。许多数据库系统都一般使用B树或者B树的各种变形结构，如下文即将要介绍的B+树，B*树来存储信息。</p>
+<p>B树与红黑树最大的不同在于，B树的结点可以有许多子女，从几个到几千个。那为什么又说B树与红黑树很相似呢?因为与红黑树一样，一棵含n个结点的B树的高度也为O（lgn），但可能比一棵红黑树的高度小许多，应为它的分支因子比较大。所以，B树可以在O（logn）时间内，实现各种如插入（insert），删除（delete）等动态集合操作。</p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>B+树概述<br>B+树其实和B树是非常相似的，我们首先看看相同点。</p>
+<p>根节点至少一个元素<br>非根节点元素范围：m/2 &lt;= k &lt;= m-1<br>不同点。</p>
+<p>B+树有两种类型的节点：内部结点（也称索引结点）和叶子结点。内部节点就是非叶子节点，内部节点不存储数据，只存储索引，数据都存储在叶子节点。<br>内部结点中的key都按照从小到大的顺序排列，对于内部结点中的一个key，左树中的所有key都小于它，右子树中的key都大于等于它。叶子结点中的记录也按照key的大小排列。<br>每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接。<br>父节点存有右孩子的第一个元素的索引。</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树就是一种平衡树，它可以保证二叉树基本符合矮矮胖胖的结构，但是理解红黑树之前，必须先了解另一种树，叫2-3树，红黑树背后的逻辑就是它。</p>
+<p>2-3树是二叉查找树的变种，树中的2和3代表两种节点，以下表示为2-节点和3-节点。</p>
+<p>2-节点即普通节点：包含一个元素，两条子链接。</p>
+<p>3-节点则是扩充版，包含2个元素和三条链接：两个元素A、B，左边的链接指向小于A的节点，中间的链接指向介于A、B值之间的节点，右边的链接指向大于B的节点。</p>
+<p>红黑树中，所有的节点都是标准的2-节点，为了体现出3-节点，这里将3-节点的两个元素用左斜红色的链接连接起来，即连接了两个2-节点来表示一个3-节点。这里红色节点标记就代表指向其的链接是红链接，黑色标记的节点就是普通的节点。所以才会有那样一条定义，叫“从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点”，因为红色节点是可以与其父节点合并为一个3-节点的，红黑树实现的其实是一个完美的黑色平衡，如果你将红黑树中所有的红色链接放平，那么它所有的叶子节点到根节点的距离都是相同的。所以它并不是一个严格的平衡二叉树，但是它的综合性能已经很优秀了。</p>
+<p>红黑树性质：</p>
+<ol>
+<li><p>每个节点非红即黑</p>
+</li>
+<li><p>根节点是黑的; </p>
+</li>
+<li><p>每个叶节点（叶节点即树尾端NULL指针或NULL节点）都是黑的; </p>
+</li>
+<li><p>如图所示，如果一个节点是红的，那么它的两儿子都是黑的; </p>
+</li>
+<li><p>对于任意节点而言，其到叶子点树NULL指针的每条路径都包含相同数目的黑节点;</p>
+</li>
+<li><p>每条路径都包含相同的黑节点;</p>
+</li>
+</ol>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 从B树、B+树、B*树谈到R 树  <a href="https://blog.csdn.net/v_JULY_v/article/details/6530142?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/6530142?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param</a><br>[2] 面试官问你B树和B+树，就把这篇文章丢给他 <a href="https://www.jianshu.com/p/7a2017e830a0" target="_blank" rel="noopener">https://www.jianshu.com/p/7a2017e830a0</a><br>[3] b+树图文详解 <a href="https://blog.csdn.net/qq_26222859/article/details/80631121?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/qq_26222859/article/details/80631121?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a><br>[4] 清晰理解红黑树的演变—红黑的含义 <a href="https://blog.csdn.net/chen_zhang_yu/article/details/52415077" target="_blank" rel="noopener">https://blog.csdn.net/chen_zhang_yu/article/details/52415077</a><br>[5] 红黑树和AVL树（平衡二叉树）区别 <a href="https://blog.csdn.net/u010899985/article/details/80981053" target="_blank" rel="noopener">https://blog.csdn.net/u010899985/article/details/80981053</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-字符串相似度（动态规划）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1235,95 +1333,6 @@ void InsertSort(vector&lt;int&gt; &amp;vi)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/07/02/%E6%8E%92%E5%BA%8F-%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-中sizeof-、strlen-、length-、size-详解和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">C++中sizeof()、strlen()、length()、size()详解和区别</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-06-28T02:17:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>c/c++中获取字符串长度。有以下函数：size()、sizeof() 、strlen()、str.length();一、数组或字符串的长度:sizeof()、strlen()</p>
-<h2 id="sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。"><a href="#sizeof-会包含’-0’-即实际字符串长度加一，c-中的size-和length-没有区别，实际字符串长度。" class="headerlink" title="sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。"></a>sizeof()会包含’\0’ 即实际字符串长度加一，c++中的size()和length()没有区别，实际字符串长度。</h2><h2 id="1、sizeof-返回所占总空间的字节数"><a href="#1、sizeof-返回所占总空间的字节数" class="headerlink" title="1、sizeof():返回所占总空间的字节数"></a>1、sizeof():返回所占总空间的字节数</h2><p>（1）、对于整型字符型数组</p>
-<p>（2）、对于整型或字符型指针</p>
-<h2 id="2、strlen-返回字符数组或字符串所占的字节数"><a href="#2、strlen-返回字符数组或字符串所占的字节数" class="headerlink" title="2、strlen():返回字符数组或字符串所占的字节数"></a>2、strlen():返回字符数组或字符串所占的字节数</h2><p>（1）、针对字符数组</p>
-<p>（2）、针对字符指针</p>
-<p>sizeof(…)是运算符，其值在编译时即计算好了，参数可以是数组、指针、类型、对象、函数等。它的功能是：获得保证能容纳实现所建立的最大对象的字节大小。由于在编译时计算，因此sizeof不能用来返回动态分配的内存空间的大小。</p>
-<p>strlen(…)是函数，要在运行时才能计算。参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。它的功能是：返回字符串的长度。该字符串可能是自己定义的，也可能是内存中随机的，该函数实际完成的功能是从代表该字符串的第一个地址开始遍历，直到遇到结束符’\0’。返回的长度大小不包括’\0’。</p>
-<p>strlen(char*)函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个’\0’,如果你只定义没有给它赋初值，这个结果是不定的，它会从aa首地址一直找下去，直到遇到’\0’停止。</p>
-<p>c/c++ strlen(str)和str.length()和str.size()都可以求字符串长度。</p>
-<p>其中str.length()和str.size()是用于求string类对象的成员函数</p>
-<p>strlen(str)是用于求字符数组的长度，其参数是char*。举例：</p>
-<p>1）char* ss = “0123456789”;<br>sizeof(ss)为4，ss是指向字符串常量的字符指针，sizeof 获得的是指针所占的空间,则为4<br>sizeof(<em>ss)为1，</em>ss是第一个char字符，则为1</p>
-<p>2）char ss[] = “0123456789”;<br>sizeof(ss)为11,ss是数组，计算到’\0’位置，因此是(10+1)<br>sizeof(<em>ss)为1,</em>ss是第一个字符</p>
-<p>3）char ss[100] = “0123456789”;<br>sizeof(ss)为100，ss表示在内存中预分配的大小，100*1<br>strlen(ss)为10，它的内部实现用一个循环计算字符串的长度,直到’\0’为止。</p>
-<p>4）int ss[100] = “0123456789”;<br>sizeof(ss)为400，ss表示在内存中预分配的大小，100<em>4<br>strlen(ss)错误，strlen参数只能是char</em>，且必须是以’\0’结尾</p>
-<p>5）char[] a={‘a’,’b’,’c’};<br>sizeof(a)的值应该为3。<br>char[] b={“abc”};<br>sizeof(b)的值应该是4。</p>
-<p>若string str={‘a’,’b’,’c’,’\0’,’X’};<br>那么sizeof(str)为5，strlen(str)为3。sizeof()、strlen()两者区别：</p>
-<p>1）sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。<br>该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
-<p>2）sizeof是运算符，strlen是函数。 </p>
-<p>3）sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如：<br>short f();<br>printf(“%d\n”, sizeof(f()));<br>输出的结果是sizeof(short)，即2。 </p>
-<p>4）数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
-<p>5）大部分编译程序 在编译的时候就把sizeof计算过了 是类型或是变量的长度。这就是sizeof(x)可以用来定义数组维数的原因<br>char str[20]=”0123456789”;<br>int a=strlen(str); //a=10;<br>int b=sizeof(str); //而b=20; </p>
-<p>6）strlen的结果要在运行的时候才能计算出来，用来计算字符串的长度，不是类型占内存的大小。 </p>
-<p>7）sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。 </p>
-<p>8）当使用了一个结构类型或变量时， sizeof 返回实际的大小， 当使用一静态地空间数组， sizeof 返回全部数组的尺寸。 sizeof 操作符不能返回被动态分配的数组或外部的数组的尺寸 二、string中length()和size()</p>
-<p>c++中的size()和length()没有区别<br>如：<br>        string str=”0123456789”;<br>        cout &lt;&lt;”str.length()=”&lt;&lt;str.length()&lt;&lt;endl;//结果为10<br>        cout &lt;&lt;”str.size()=”&lt;&lt;str.size()&lt;&lt;endl;//结果为10</p>
-<p>为了兼容，这两个函数一样。 length()是因为沿用C语言的习惯而保留下来的，string类最初只有length()，引入STL之后，为了兼容又加入了size()，它是作为STL容器的属性存在的，便于符合STL的接口规则，以便用于STL的算法。 string类的size()/length()方法返回的是字节数，不管是否有汉字。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/28/C-%E4%B8%ADsizeof-%E3%80%81strlen-%E3%80%81length-%E3%80%81size-%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 

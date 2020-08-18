@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | NinePounds的博客</title>
+  <title>B树、B+树、红黑树总结 | NinePounds的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NinePounds的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/5/index.html">
+  <meta name="description" content="B树基本原理 首先，简单说一下B树产生的原因。B树是一种查找树，我们知道，这一类树（比如二叉查找树，红黑树等等）最初生成的目的都是为了解决某种系统中，查找效率低的问题。B树也是如此，它最初启发于二叉查找树，二叉查找树的特点是每个非叶节点都只有两个孩子节点。然而这种做法会导致当数据量非常大时，二叉查找树的深度过深，搜索算法自根节点向下搜索时，需要访问的节点也就变的相当多。如果这些节点存储在外存储器中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B树、B+树、红黑树总结">
+<meta property="og:url" content="http://yoursite.com/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="NinePounds的博客">
+<meta property="og:description" content="B树基本原理 首先，简单说一下B树产生的原因。B树是一种查找树，我们知道，这一类树（比如二叉查找树，红黑树等等）最初生成的目的都是为了解决某种系统中，查找效率低的问题。B树也是如此，它最初启发于二叉查找树，二叉查找树的特点是每个非叶节点都只有两个孩子节点。然而这种做法会导致当数据量非常大时，二叉查找树的深度过深，搜索算法自根节点向下搜索时，需要访问的节点也就变的相当多。如果这些节点存储在外存储器中">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-18T03:25:43.000Z">
+<meta property="article:modified_time" content="2020-08-18T03:40:52.670Z">
 <meta property="article:author" content="NinePounds">
 <meta name="twitter:card" content="summary">
   
@@ -150,160 +154,190 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-B树、B-树、红黑树总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      B树、B+树、红黑树总结
+    </h1>
+  
+
+        
+        <a href="/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-08-18T03:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-18</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><p>基本原理</p>
+<p>首先，简单说一下B树产生的原因。B树是一种查找树，我们知道，这一类树（比如二叉查找树，红黑树等等）最初生成的目的都是为了解决某种系统中，查找效率低的问题。B树也是如此，它最初启发于二叉查找树，二叉查找树的特点是每个非叶节点都只有两个孩子节点。然而这种做法会导致当数据量非常大时，二叉查找树的深度过深，搜索算法自根节点向下搜索时，需要访问的节点也就变的相当多。如果这些节点存储在外存储器中，每访问一个节点，相当于就是进行了一次I/O操作，随着树高度的增加，频繁的I/O操作一定会降低查询的效率。</p>
+<p>B树也称B-树,它是一颗多路平衡查找树。二叉树我想大家都不陌生，其实，B树和后面讲到的B+树也是从最简单的二叉树变换而来的，并没有什么神秘的地方，下面我们来看看B树的定义。</p>
+<p>每个节点最多有m-1个关键字（可以存有的键值对）。</p>
+<p>根节点最少可以只有1个关键字。</p>
+<p>非根节点至少有m/2个关键字。</p>
+<p>每个节点中的关键字都按照从小到大的顺序排列，每个关键字的左子树中的所有关键字都小于它，而右子树中的所有关键字都大于它。</p>
+<p>所有叶子节点都位于同一层，或者说根节点到每个叶子节点的长度都相同。</p>
+<p>每个节点都存有索引和数据，也就是对应的key和value。</p>
+<p>B树是为了磁盘或其它存储设备而设计的一种多叉（下面你会看到，相对于二叉，B树每个内结点有多个分支，即多叉）平衡查找树。与本blog之前介绍的红黑树很相似，但在降低磁盘I/0操作方面要更好一些。许多数据库系统都一般使用B树或者B树的各种变形结构，如下文即将要介绍的B+树，B*树来存储信息。</p>
+<p>B树与红黑树最大的不同在于，B树的结点可以有许多子女，从几个到几千个。那为什么又说B树与红黑树很相似呢?因为与红黑树一样，一棵含n个结点的B树的高度也为O（lgn），但可能比一棵红黑树的高度小许多，应为它的分支因子比较大。所以，B树可以在O（logn）时间内，实现各种如插入（insert），删除（delete）等动态集合操作。</p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>B+树概述<br>B+树其实和B树是非常相似的，我们首先看看相同点。</p>
+<p>根节点至少一个元素<br>非根节点元素范围：m/2 &lt;= k &lt;= m-1<br>不同点。</p>
+<p>B+树有两种类型的节点：内部结点（也称索引结点）和叶子结点。内部节点就是非叶子节点，内部节点不存储数据，只存储索引，数据都存储在叶子节点。<br>内部结点中的key都按照从小到大的顺序排列，对于内部结点中的一个key，左树中的所有key都小于它，右子树中的key都大于等于它。叶子结点中的记录也按照key的大小排列。<br>每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接。<br>父节点存有右孩子的第一个元素的索引。</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树就是一种平衡树，它可以保证二叉树基本符合矮矮胖胖的结构，但是理解红黑树之前，必须先了解另一种树，叫2-3树，红黑树背后的逻辑就是它。</p>
+<p>2-3树是二叉查找树的变种，树中的2和3代表两种节点，以下表示为2-节点和3-节点。</p>
+<p>2-节点即普通节点：包含一个元素，两条子链接。</p>
+<p>3-节点则是扩充版，包含2个元素和三条链接：两个元素A、B，左边的链接指向小于A的节点，中间的链接指向介于A、B值之间的节点，右边的链接指向大于B的节点。</p>
+<p>红黑树中，所有的节点都是标准的2-节点，为了体现出3-节点，这里将3-节点的两个元素用左斜红色的链接连接起来，即连接了两个2-节点来表示一个3-节点。这里红色节点标记就代表指向其的链接是红链接，黑色标记的节点就是普通的节点。所以才会有那样一条定义，叫“从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点”，因为红色节点是可以与其父节点合并为一个3-节点的，红黑树实现的其实是一个完美的黑色平衡，如果你将红黑树中所有的红色链接放平，那么它所有的叶子节点到根节点的距离都是相同的。所以它并不是一个严格的平衡二叉树，但是它的综合性能已经很优秀了。</p>
+<p>红黑树性质：</p>
+<ol>
+<li><p>每个节点非红即黑</p>
+</li>
+<li><p>根节点是黑的; </p>
+</li>
+<li><p>每个叶节点（叶节点即树尾端NULL指针或NULL节点）都是黑的; </p>
+</li>
+<li><p>如图所示，如果一个节点是红的，那么它的两儿子都是黑的; </p>
+</li>
+<li><p>对于任意节点而言，其到叶子点树NULL指针的每条路径都包含相同数目的黑节点;</p>
+</li>
+<li><p>每条路径都包含相同的黑节点;</p>
+</li>
+</ol>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 从B树、B+树、B*树谈到R 树  <a href="https://blog.csdn.net/v_JULY_v/article/details/6530142?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/6530142?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param</a><br>[2] 面试官问你B树和B+树，就把这篇文章丢给他 <a href="https://www.jianshu.com/p/7a2017e830a0" target="_blank" rel="noopener">https://www.jianshu.com/p/7a2017e830a0</a><br>[3] b+树图文详解 <a href="https://blog.csdn.net/qq_26222859/article/details/80631121?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/qq_26222859/article/details/80631121?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a><br>[4] 清晰理解红黑树的演变—红黑的含义 <a href="https://blog.csdn.net/chen_zhang_yu/article/details/52415077" target="_blank" rel="noopener">https://blog.csdn.net/chen_zhang_yu/article/details/52415077</a><br>[5] 红黑树和AVL树（平衡二叉树）区别 <a href="https://blog.csdn.net/u010899985/article/details/80981053" target="_blank" rel="noopener">https://blog.csdn.net/u010899985/article/details/80981053</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2020-05-11T03:54:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E2%80%94%E6%A0%91/">树</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/18/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-05-11T03:44:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/15/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串相似度（动态规划）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8-%E5%9F%BA%E7%A1%80/">链表（基础）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2020-05-10T01:41:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/%E5%89%91%E6%8C%87offer%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/Window%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-05-09T01:55:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/Window%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">Windows下使用Hexo+GitHub搭建个人免费博客教程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-05-06T03:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
   
 
 
@@ -327,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
