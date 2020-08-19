@@ -152,6 +152,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-记一次阿里笔试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%98%BF%E9%87%8C%E7%AC%94%E8%AF%95/">记一次阿里笔试</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%98%BF%E9%87%8C%E7%AC%94%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2020-08-19T02:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>8月19日早9:00进行阿里笔试</p>
+<p>两道编程题</p>
+<p>第一道比较简单，而且也只做了第一道题。<br>输入三个数组，使前两个数组只能从前往后取值，并且可以交替取值，对比与第三个数组数据的可能性，有点像对比栈的输入输出。</p>
+<p>比如 [1 2 3] [4 5 6] [1 2 3 4 5 6] 是可以的 [1 4 2  5 3 6 ]也是可以的</p>
+<p>[1 2 1]  [2 1 2]  [1 1 1 2 2 2]  是不可以的。</p>
+<p>写完代码后，调试是正确的，在本地IDE输入输出也是正确的，但是在界面就是0%，要吐了。<br>最后发现可能要连续输出，即连续输入三组数据，连续输出三组数据。最后IDE成功。醉了。。。。</p>
+<p>以下是调试代码：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; res;
+    for(int t=0 ;t&lt;n;t++)
+    {
+        int len_a,len_b;
+        cin &gt;&gt; len_a;
+        cin &gt;&gt; len_b;
+        int m;
+        vector&lt;int&gt; a,b,c;
+        for(int i = 0; i&lt; len_a ;i++)
+        {
+            cin &gt;&gt; m ;
+            a.push_back(m);
+        }
+         for(int i = 0; i&lt; len_b; i++)
+        {
+            cin &gt;&gt; m ;
+            b.push_back(m);
+        }
+        for(int i = 0; i&lt; len_b+len_a; i++)
+        {
+            cin &gt;&gt; m ;
+            c.push_back(m);
+        }
+        int flag = 1;
+        for(int i = 0,j=0,k=0; i&lt; len_b+len_a ;i++)
+        {
+            if(c[i] == a[j] &amp;&amp; j!=len_a)
+            {
+                while(c[i] == a[j] &amp;&amp; j!=len_a )
+                {
+                    j++;
+                    i++;
+                }
+                i--;
+            }
+            else if(c[i] == b[k] &amp;&amp; k!=len_b)
+            {
+               while(c[i] == b[k] &amp;&amp; k!=len_b )
+                {
+                    k++;
+                    i++;
+                }
+                i--;
+            }
+            else if(c[i] != a[j] &amp;&amp; c[i] != b[k])
+            {
+                flag = 0;
+                break;
+            }
+        }
+
+        if(flag == 1)
+            res.push_back(1);
+        else
+            res.push_back(0);
+    }
+    for(int i =0;i&lt;n;i++)
+    {
+        if(res[i]==1)
+            cout &lt;&lt; &quot;possible&quot;&lt;&lt; endl;
+        else
+            cout &lt;&lt; &quot;not possible&quot;&lt;&lt; endl;
+    }
+    res.clear();
+    return 0;
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%98%BF%E9%87%8C%E7%AC%94%E8%AF%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-美团-腾讯面经" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1037,178 +1179,6 @@ int main(){
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-07-03T02:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>快速排序：快速排序是冒泡排序的改进版，也是最好的一种内排序，在很多面试题中都会出现，也是作为程序员必须掌握的一种排序方法。</p>
-<p>基本步骤为：</p>
-<ul>
-<li><p>在待排序的元素任取一个元素作为基准(通常选第一个元素，但最的选择方法是从待排序元素中随机选取一个作为基准)，称为基准元素；</p>
-</li>
-<li><p>将待排序的元素进行分区，比基准元素大的元素放在它的右边，比其小的放在它的左边；</p>
-</li>
-<li><p>对左右两个分区重复以上步骤直到所有元素都是有序的。</p>
-</li>
-</ul>
-<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p>三个函数</p>
-<p>基准插入函数：int getStandard(int array[],int low,int high)（返回基准位置下标）</p>
-<p>递归排序函数：void quickSort(int array[],int low,int high)</p>
-<p>主函数：int main()</p>
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-int getStandard(int array[], int i, int j) {
-    //基准数据 
-    int key = array[i];
-    while (i &lt; j) {
-            //因为默认基准是从左边开始，所以从右边开始比较 
-            //当队尾的元素大于等于基准数据 时,就一直向前挪动 j 指针 
-            while (i &lt; j &amp;&amp; array[j] &gt;= key) {
-                j--;
-            }
-            //当找到比 array[i] 小的时，就把后面的值 array[j] 赋给它 
-            if (i &lt; j) {
-                array[i] = array[j];
-            }
-            //当队首元素小于等于基准数据 时,就一直向后挪动 i 指针 
-            while (i &lt; j &amp;&amp; array[i] &lt;= key) {
-                i++;
-            }
-            //当找到比 array[j] 大的时，就把前面的值 array[i] 赋给它
-            if (i &lt; j) {
-                array[j] = array[i];
-            }
-        }
-    //跳出循环时 i 和 j 相等,此时的 i 或 j 就是 key 的正确索引位置
-    //把基准数据赋给正确位置 
-    array[i] = key;
-    return i;
-}
-
-void QuickSort(int array[], int low, int high) {
-    //开始默认基准为 low
-    if (low &lt; high) {
-        //分段位置下标 
-        int standard = getStandard(array, low, high);
-        //递归调用排序
-        //左边排序 
-        QuickSort(array, low, standard - 1);
-        //右边排序 
-        QuickSort(array, standard + 1, high);
-    }
-}
-
-void display(int array[], int size) {
-    for (int i = 0; i &lt; size; i++) {
-        printf(&quot;%d &quot;, array[i]);
-    }
-    printf(&quot;\n&quot;);
-}
-
-int main() {
-    int array[] = { 49,38,65,97,76,13,27,49,10 };
-    int size = sizeof(array) / sizeof(int);
-    printf(&quot;%d \n&quot;, size);
-    QuickSort(array, 0, size - 1);
-    display(array, size);
-    return 0;
-}</code></pre><p>合并到一起快速排序</p>
-<pre><code>void QuickSort(int array[], int low, int high) {
-    int i = low;
-   int j = high;
-    int key = array[i];
-    if (low &lt; high) {
-        while (i &lt; j) {
-            while (i &lt; j &amp;&amp; array[j] &gt;= key) {
-                j--;
-           }
-            if (i &lt; j) {
-                array[i] = array[j];
-            }
-           while (i &lt; j &amp;&amp; array[i] &lt;= key) {
-                i++;
-            }
-            if (i &lt; j) {
-                array[j] = array[i];
-            }
-        }
-       array[i] = key;
-       int standard = i;
-        QuickSort(array, low, standard - 1);
-        QuickSort(array, standard + 1, high);
-    }
-}</code></pre><h2 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h2><p>时间复杂度：</p>
-<ul>
-<li><p>最好：O(n log2 n)</p>
-</li>
-<li><p>最坏：O(n^2)</p>
-</li>
-<li><p>平均：O(n log2 n)</p>
-</li>
-</ul>
-<p>空间复杂度：O(n log2 n)</p>
-<p>稳定性：不稳定</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 快速排序算法——C/C++ <a href="https://blog.csdn.net/weixin_42109012/article/details/91645051" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42109012/article/details/91645051</a><br>[2] 快速排序（交换排序）——思路及代码实现 <a href="https://blog.csdn.net/Javaprintf/article/details/106969126" target="_blank" rel="noopener">https://blog.csdn.net/Javaprintf/article/details/106969126</a><br>[3] 快速排序算法详细讲解c++版 <a href="https://blog.csdn.net/qq_33060405/article/details/78804674?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/qq_33060405/article/details/78804674?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/03/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">展开全文 >></a>
         </p>
       
 
