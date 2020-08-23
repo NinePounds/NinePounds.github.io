@@ -152,6 +152,234 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-【C-】浅拷贝和深拷贝" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/23/%E3%80%90C-%E3%80%91%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/">【C++】浅拷贝和深拷贝</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/23/%E3%80%90C-%E3%80%91%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/" class="archive-article-date">
+  	<time datetime="2020-08-23T02:07:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>深拷贝与浅拷贝</p>
+<p>简单的来说，【浅拷贝】是增加了一个指针，指向原来已经存在的内存。而【深拷贝】是增加了一个指针，并新开辟了一块空间</p>
+<p>让指针指向这块新开辟的空间。</p>
+<p>【浅拷贝】在多个对象指向一块空间的时候，释放一个空间会导致其他对象所使用的空间也被释放了，再次释放便会出现错误</p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>为了形象化说明什么是深拷贝和浅拷贝，我们就先写一个String类</p>
+<p>类里面包含【构造函数】，【拷贝构造函数】，【赋值运算符重载】，以及【析构函数】和【输出操作符“&lt;&lt;”的重载】</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>深拷贝以及深浅拷贝的对比</p>
+<p>深拷贝和浅拷贝的不同之处，仅仅在于修改了下【拷贝构造函数】，以及【赋值运算符的重载】</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>【浅拷贝】只是增加了一个指针，指向已存在对象的内存。</p>
+<p>【深拷贝】是增加了一个指针，并新开辟了一块空间，让指针指向这块新开辟的空间。</p>
+<p>【浅拷贝】在多个对象指向一块空间的时候，释放一个空间会导致其他对象所使用的空间也被释放了，再次释放便会出现错误</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 浅拷贝和深拷贝 <a href="https://blog.csdn.net/qq_27011361/article/details/79518057" target="_blank" rel="noopener">https://blog.csdn.net/qq_27011361/article/details/79518057</a><br>[2] C++细节 深拷贝和浅拷贝(位拷贝）详解 <a href="https://blog.csdn.net/weixin_41143631/article/details/81486817?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41143631/article/details/81486817?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/23/%E3%80%90C-%E3%80%91%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-GET和POST两种基本请求方法的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/23/GET%E5%92%8CPOST%E4%B8%A4%E7%A7%8D%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/">GET和POST两种基本请求方法的区别 </a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/23/GET%E5%92%8CPOST%E4%B8%A4%E7%A7%8D%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-08-23T01:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原理区别"><a href="#原理区别" class="headerlink" title="原理区别"></a>原理区别</h2><p>一般我们在浏览器输入一个网址访问网站都是GET请求;再FORM表单中，可以通过设置Method指定提交方式为GET或者POST提交方式，默认为GET提交方式。</p>
+<p>HTTP定义了与服务器交互的不同方法，其中最基本的四种：GET，POST，PUT，DELETE，HEAD，其中GET和HEAD被称为安全方法，因为使用GET和HEAD的HTTP请求不会产生什么动作。不会产生动作意味着GET和HEAD的HTTP请求不会在服务器上产生任何结果。但是安全方法并不是什么动作都不产生，这里的安全方法仅仅指不会修改信息。</p>
+<p>根据HTTP规范，POST可能会修改服务器上的资源的请求。比如CSDN的博客，用户提交一篇文章或者一个读者提交评论是通过POST请求来实现的，因为再提交文章或者评论提交后资源（即某个页面）不同了，或者说资源被修改了，这些便是“不安全方法”。</p>
+<p>•GET在浏览器回退时是无害的，而POST会再次提交请求。</p>
+<p>•GET产生的URL地址可以被Bookmark，而POST不可以。</p>
+<p>•GET请求会被浏览器主动cache，而POST不会，除非手动设置。</p>
+<p>•GET请求只能进行url编码，而POST支持多种编码方式。</p>
+<p>•GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</p>
+<p>•GET请求在URL中传送的参数是有长度限制的，而POST么有。</p>
+<p>•对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</p>
+<p>•GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</p>
+<p>•GET参数通过URL传递，POST放在Request body中。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] Get与Post的区别 <a href="https://www.cnblogs.com/logsharing/p/8448446.html" target="_blank" rel="noopener">https://www.cnblogs.com/logsharing/p/8448446.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/23/GET%E5%92%8CPOST%E4%B8%A4%E7%A7%8D%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-面向对象总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/23/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%BB%E7%BB%93/">面向对象总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/23/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-08-23T01:07:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>被定义为”把一个或多个项目封闭在一个物理的或者逻辑的包中”。在面向对象程序设计方法论中，封装是为了防止对实现细节的访问。封装只公开某些对外接口，隐藏具体实现细节。增加了一定的安全性，防止信息的泄露以及破坏。</p>
+<p>讲到封装，我们又得提下访问修饰符了。<br>◦public：所有对象都可以访问；<br>◦private：对象本身在对象内部可以访问；<br>◦protected：只有该类对象及其子类对象可以访问<br>◦internal：同一个程序集的对象可以访问；<br>◦protected internal：访问限于当前程序集或派生自包含类的类型。</p>
+<p>封装是实现面向对象程序设计的第一步，封装就是将数据或函数等集合在一个个的单元中（我们称之为类）。被封装的对象通常被称为抽象数据类型。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承是软件复用的一种形式。使用继承可以复用现有类的数据和行为，为其赋予新功能而创建出新类。 </p>
+<p>在现有类（基类、父类）上建立新类（派生类、子类）的处理过程称为继承。派生类能自动获得基类的除了构造函数和析构函数以外的所有成员，可以在派生类中添加新的属性和方法扩展其功能。</p>
+<p>这里继承又可分为以下系列：<br>◦单重继承：表示一个类可以派生自一个基类，C#采用此继承<br>◦多重继承：多重继承允许一个类派生自多个类，C#不支持多重继承，但允许接口的多重继承<br>◦多层继承：多层继承允许有更大的层此结构，类B派生自类A，类C派生自类B，其中，类B也称为中间基类，C#支持它，也很常用。<br>◦接口继承：允许接口多重继承</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态指在程序设计中存在同名不同方法的存在，主要通过子类对父类的覆盖来实现多态，设计原则之一就是要依赖于抽象，而不依赖于具体，增加灵活性。多态就是为了体现这一原则。</p>
+<p>“一个接口，多种方法”同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。</p>
+<p>封装可以隐藏实现细节，使得代码模块化；继承可以扩展已存在的代码模块（类）；它们的目的都是：代码重用。而多态则是为了实现另一个目的——接口重用！多态的作用，就是为了类在继承和派生的时候，保证使用“家谱”中任一类的实例的某一属性时的正确调用。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>万物皆对象。它包括现实中客观存在的事物，也包括抽象的时间、规则、思维。简单点说，对象具有状态、行为和标识。</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>具有相同特性和行为的对象组成的集合就是类。类是对象的抽象，而对象是类的具体实例。类与对象的关系：抽象(该抽象是名词)与类的实例化就是对象，对象的共性特征抽象(该抽象是动词)出来就是类。</p>
+<h2 id="对象和类解释："><a href="#对象和类解释：" class="headerlink" title="对象和类解释："></a>对象和类解释：</h2><p>1）对象：对象是人们要进行研究的任何事物，它不仅能表示具体的事物，还能表示抽象的规则、计划或事件。对象具有状态，一个对象用数据值来描述它的状态。对象还有操作，用于改变对象的状态，对象及其操作就是对象的行为。对象实现了数据和操作的结合，使数据和操作封装于对象的统一体中。</p>
+<p>2）类：具有相同特性（数据元素）和行为（功能）的对象的抽象就是类。因此，对象的抽象是类，类的具体化就是对象，也可以说类的实例是对象，类实际上就是一种数据类型。类具有属性，它是对象的状态的抽象，用数据结构来描述类的属性。类具有操作，它是对象的行为的抽象，用操作名和实现该操作的方法来描述。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 面向对象三大特性—–封装、继承、多态 <a href="https://juejin.im/post/6844903928350556167" target="_blank" rel="noopener">https://juejin.im/post/6844903928350556167</a><br>[2] 如何理解封装、继承和多态 <a href="https://blog.csdn.net/c_w_d/article/details/52982191" target="_blank" rel="noopener">https://blog.csdn.net/c_w_d/article/details/52982191</a><br>[3] 面向对象编程三大特性——封装、继承、多态 <a href="https://blog.csdn.net/jianyuerensheng/article/details/51602015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/jianyuerensheng/article/details/51602015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a><br>[4] C++封装、继承、多态 <a href="https://blog.csdn.net/ruyue_ruyue/article/details/8211809?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/ruyue_ruyue/article/details/8211809?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param</a><br>[5] 什么是类？对象？类与对象的关系是什么？ <a href="https://blog.csdn.net/daponi/article/details/90739284" target="_blank" rel="noopener">https://blog.csdn.net/daponi/article/details/90739284</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/23/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记一次阿里笔试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -841,344 +1069,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/07/28/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-操作系统合集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%88%E9%9B%86/">操作系统合集</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%88%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2020-07-24T08:54:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="操作系统面试题"><a href="#操作系统面试题" class="headerlink" title="操作系统面试题"></a>操作系统面试题</h1><h2 id="操作系统引论"><a href="#操作系统引论" class="headerlink" title="操作系统引论"></a>操作系统引论</h2><h3 id="面试题1：什么是操作系统"><a href="#面试题1：什么是操作系统" class="headerlink" title="面试题1：什么是操作系统"></a>面试题1：什么是操作系统</h3><ul>
-<li><p>控制和管理整个计算机系统的硬件和软件资源</p>
-</li>
-<li><p>为用户和上层软件，提供易用接口和环境的程序</p>
-</li>
-</ul>
-<p>*是最基础的系统软件</p>
-<h3 id="面试题2：什么是系统调用"><a href="#面试题2：什么是系统调用" class="headerlink" title="面试题2：什么是系统调用"></a>面试题2：什么是系统调用</h3><p>系统调用是：操作系统对应用程序提供的服务调用请求接口</p>
-<p>引用目的：应用程序通过系统调用请求获得操作系统内核的服务，保证系统稳定性和安全性(用户非法操作)</p>
-<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="面试题1：进程和线程的区别"><a href="#面试题1：进程和线程的区别" class="headerlink" title="面试题1：进程和线程的区别"></a>面试题1：进程和线程的区别</h3><p>调度单位：线程是独立调度单位，进程拥有资源的基本单位</p>
-<p>资源：进程都是拥有资源的基本单位，线程不拥有系统资源(少) 但可以访问共享其隶属进程的系统资源</p>
-<p>并发粒度：引入线程后并发度提升，吞吐量提升</p>
-<p>系统开销</p>
-<p>1.进程创建开销 2.进程切换开销 3.进程间通信开销</p>
-<p>地址空间</p>
-<p>进程地址空间独立、线程共享同一进程资源的地址空间</p>
-<p>通信方面</p>
-<p>进程间通信：需要同步和互斥手段保证数据一致<br>线程间通信：可直接读写同一进程数据段(全局变量)</p>
-<h3 id="面试题2：进程有哪⼏种状态，状态如何转换"><a href="#面试题2：进程有哪⼏种状态，状态如何转换" class="headerlink" title="面试题2：进程有哪⼏种状态，状态如何转换"></a>面试题2：进程有哪⼏种状态，状态如何转换</h3><p>5/3种状态</p>
-<p>运行态：进程在CPU上运行；单处理机最多1个运行态</p>
-<p>就绪态：进程获得了除CPU外的一切资源，存入就绪队列</p>
-<p>阻塞态：进程等待某一事件(等待资源)而暂停运行 如等IO</p>
-<p>创建态：进程正被创建，尚未转到就绪态(详见进程控制)</p>
-<p>结束态：进程正常结束或其他原因中断运行，先置结束态</p>
-<p>状态转换：</p>
-<p>就绪态-&gt;运行态</p>
-<p>处于就绪态被调度，获得处理机资源(时间片)</p>
-<p>运行态-&gt;就绪态</p>
-<p>1.时间片用完，调度程序让进程换态(非主动)</p>
-<p>2.或者被可剥夺系统中被优先级高的进程抢占</p>
-<p>运行态-&gt;阻塞态</p>
-<p>1.进程请求某一资源(如外设)的使用和分配<br>2.或者等待某一事件(如等待I/O执行中(阻塞))</p>
-<p>阻塞态-&gt;就绪态</p>
-<p>1.进程等待事件的发生(得到资源),如另一个进程的I/O操作结束,释放IO资源,这个进程得到IO资源 2.或中断结束 中断处理程序来改变相应进程状态</p>
-<h3 id="面试题3：进程间有哪些通信方式"><a href="#面试题3：进程间有哪些通信方式" class="headerlink" title="面试题3：进程间有哪些通信方式"></a>面试题3：进程间有哪些通信方式</h3><p>进程通信的概念</p>
-<p>目的和概念</p>
-<p>进程之间信息交换</p>
-<p>引入原因</p>
-<p>各进程拥有独立的内存地址空间，为了保证安全，一个进程不能直接访问其它进程的地址空间</p>
-<p>通信方式</p>
-<p>1.共享存储</p>
-<p>设置一块可直接访问的内存共享空间，读写交换信息互斥访问共享空间，读/写操作使用p/v</p>
-<p>2.消息传递</p>
-<p>进程间数据交换以格式化的消息为单位，系统提供“发送/接受原语”，如：消息队列、信箱</p>
-<p>3.管道通信</p>
-<p>设置一个特殊的共享文件(管道)，缓冲区，半双工</p>
-<h3 id="面试题4：线程间有哪些同步的方式"><a href="#面试题4：线程间有哪些同步的方式" class="headerlink" title="面试题4：线程间有哪些同步的方式"></a>面试题4：线程间有哪些同步的方式</h3><p>同步的概念</p>
-<p>由并发性带来异步性问题，进/线程间需协调工作先后次序、传递信息(合作)所产生的直接制约关系，避免资源访问冲突<br>同步的方式</p>
-<p>互斥量(Mutex)</p>
-<p>synchronized 关键词 和 各种 Lock<br>信号量(Semphares)</p>
-<p>设置资源允许的数量，同⼀时刻多个线程可以访问同⼀资源<br>管程/事件(Event) :Wait/Notify</p>
-<p>通过通知操作的⽅式来保持多线程同步<br>面试题5：进程的调度算法有哪些<br>先来先服务FCFS</p>
-<p>按照作业/进程的先后顺序服务，但短作业需要等待前面的长作业执行完，对短作业不利<br>短作业优先SJF</p>
-<p>改进FCFS，让最短的作业/进程先得到服务，追求最少的平均等待时间(平均化整体考虑)<br>高响应比优先</p>
-<p>响应比综合考虑进程的“等待时间” 和 “要求服务的时间”<br>时间片轮转调度算法(RR)</p>
-<p>按时间片轮流服务进程，使用时钟中断来通知CPU，时间片已用完了可以去调度下一个进程<br>优先级调度算法</p>
-<p>静态优先级、动态优先级(动态调整)调度<br>多级反馈队列调度算法</p>
-<p>多种调度算法的折中权衡，最优</p>
-<h3 id="面试题6：说说进程-线程安全"><a href="#面试题6：说说进程-线程安全" class="headerlink" title="面试题6：说说进程/线程安全"></a>面试题6：说说进程/线程安全</h3><p>多线程执行时不会出现数据不一致或者数据污染<br>线程安全问题都是由多个线程访问临界资源（全局变量及静态变量）引起的，可以使用同步、互斥的方法保证线程安全</p>
-<h3 id="面试题7：什么是死锁，死锁的条件，如何解决死锁"><a href="#面试题7：什么是死锁，死锁的条件，如何解决死锁" class="headerlink" title="面试题7：什么是死锁，死锁的条件，如何解决死锁"></a>面试题7：什么是死锁，死锁的条件，如何解决死锁</h3><p>什么是死锁</p>
-<p>多个进程因竞争资源而等待对方手里的资源，互相等待，都无法向前推进<br>死锁的条件</p>
-<p>1.互斥<br>2.不可剥夺<br>3.请求和保持<br>4.循环等待链<br>如何解决死锁</p>
-<p>预防死锁</p>
-<p>破坏死锁的四大条件之一<br>避免死锁</p>
-<p>安全序列来检测死锁、银行家算法<br>死锁的检测及解除</p>
-<p>资源请求分配图、死锁定理；(资源剥夺、进程回滚等)<br>内存管理</p>
-<h3 id="面试题1：操作系统的内存管理主要是做什么"><a href="#面试题1：操作系统的内存管理主要是做什么" class="headerlink" title="面试题1：操作系统的内存管理主要是做什么"></a>面试题1：操作系统的内存管理主要是做什么</h3><p>1.内存空间的分配与回收</p>
-<p>操作系统完成主存储器空间的分配，无需程序员操作，提高编程效率<br>2.内存空间的扩充</p>
-<p>利用虚拟存储技术或自动覆盖技术，从逻辑上扩充内存<br>3.地址转换</p>
-<p>程序的完整周期：编译、链接、装入，装入时将逻辑地址转换为物理地址<br>4.存储保护</p>
-<p>内存分配前，1.需要保护操作系统不受用户进程的影响 2.保护用户进程不受其它用户进程的影响 3.防止地址越界<br>面试题2：操作系统的内存管理机制了解吗？内存管理有哪⼏种⽅式?<br>连续分配方式</p>
-<p>1.单一连续分配</p>
-<p>内存分为系统区(供操作系统)和用户区(供用户)<br>2.固定分区分配</p>
-<p>将用户内存空间划分为若干固定大小的区域，每个分区只装入一道作业<br>3.动态分区分配</p>
-<p>在进程装入内存时，根据进程的大小动态地建立分区<br>离散分配方式</p>
-<p>1.基本分页存储管理<br>2.基本分段存储管理<br>3.段页式存储管理<br>内部碎片与外部碎片</p>
-<p>内部碎片</p>
-<p>固定分区分配中，一块分区只放一个进程，当这块分区有剩余容量时存在空间浪费<br>如：分页、段页式存储、固定分区<br>外部碎片</p>
-<p>动态分区分配中，随着进程的换入/换出分区外的存储空间会变成越来越多的碎片<br>如：分段</p>
-<hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 操作系统面试题总结 <a href="https://www.cnblogs.com/fisherss/p/13157890.html" target="_blank" rel="noopener">https://www.cnblogs.com/fisherss/p/13157890.html</a><br>[2] 常见面试题整理–操作系统篇 <a href="https://zhuanlan.zhihu.com/p/23755202" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23755202</a><br>[3] 面试必备-操作系统 <a href="https://blog.csdn.net/xiaoming100001/article/details/94960922" target="_blank" rel="noopener">https://blog.csdn.net/xiaoming100001/article/details/94960922</a><br>[4] 操作系统常见面试题 <a href="https://www.cnblogs.com/inception6-lxc/p/9073983.html" target="_blank" rel="noopener">https://www.cnblogs.com/inception6-lxc/p/9073983.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%88%E9%9B%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-之ListNode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/C-%E4%B9%8BListNode/">C++之ListNode</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/14/C-%E4%B9%8BListNode/" class="archive-article-date">
-  	<time datetime="2020-07-14T14:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ListNode的结构"><a href="#ListNode的结构" class="headerlink" title="ListNode的结构"></a>ListNode的结构</h2><pre><code>struct ListNode {
-      int val;  //当前结点的值
-      ListNode *next;  //指向下一个结点的指针
-      ListNode(int x) : val(x), next(NULL) {}  //初始化当前结点值为x,指针为空
-  };</code></pre><h2 id="如何向ListNode中插入新的结点：从键盘输入"><a href="#如何向ListNode中插入新的结点：从键盘输入" class="headerlink" title="如何向ListNode中插入新的结点：从键盘输入"></a>如何向ListNode中插入新的结点：从键盘输入</h2><pre><code>ListNode* temp1 = new Solution::ListNode(0); //创建新元素，
-ListNode* l1 = temp1; //最后的结果l1指向temp1，这样可以获取temp所接收的全部元素，而temp的指针由于每次都往下移，所以每次都更新
-
-while ((c = getchar()) != &apos;\n&apos;)   //以空格区分各个结点的值
-        {
-            if (c != &apos; &apos;)
-            {
-                ungetc(c, stdin);  //把不是空格的字符丢回去
-                cin &gt;&gt; num;
-                Solution::ListNode* newnode = new Solution::ListNode(0);
-                newnode-&gt;val = num;//创建新的结点存放键盘中读入的值
-                newnode-&gt;next = NULL;
-                temp2-&gt;next = newnode;//并将其赋值给temp2
-                temp2 = newnode; //此处也可以写成  temp2=temp2-&gt;next,使指针指向下一个，以待接收新元素
-            }
-        }</code></pre><h2 id="ListNode-list-new-ListNode-0"><a href="#ListNode-list-new-ListNode-0" class="headerlink" title="ListNode list = new ListNode(0)"></a>ListNode list = new ListNode(0)</h2><ul>
-<li><p>ListNode list=new ListNode() 初始化一个空节点，无值,不提倡此种写法。</p>
-</li>
-<li><p>ListNode list=new ListNode(0) 初始化一个节点值为0的空节点，最常用最正规写法</p>
-</li>
-<li><p>ListNode list=null 为空，什么都没有，一般不这么写；</p>
-</li>
-</ul>
-<h2 id="关于malloc"><a href="#关于malloc" class="headerlink" title="关于malloc"></a>关于malloc</h2><p>它是一个函数，原型是void *malloc(size_t size); </p>
-<p>前面提过了，就是分配size个字节的内存，然后返回指向这段内存首字节的指针，</p>
-<p>void* 表示未确定类型的指针，void *可以指向任何类型的数据，更明确的说是指申请内存空间时还不知道用户是用这段空间来存储什么类型的数据（比如是char还是int或者…），所以你要用它指向什么数据，一般就要在malloc前加一个强制转换，把这个指针转为适合你使用的类型。</p>
-<p>(Node *)malloc(sizeof(Node))是指在malloc成功后返回一个Node类型的指针</p>
-<h2 id="返回链表的倒数第K个结点"><a href="#返回链表的倒数第K个结点" class="headerlink" title="返回链表的倒数第K个结点"></a>返回链表的倒数第K个结点</h2><pre><code>//调试时，显示数组越界等问题，原因是该题倒数第0个结点比较扯，给出结果为0，题意并未提示
-#include&lt;iostream&gt;
-using namespace std;
-struct ListNode{
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(NULL){}//初始化当前结点值为x,指针为空
-};
-int main(){
-    int nums;
-    while(cin &gt;&gt; nums){
-        ListNode *pHead = new ListNode(0);//初始化一个节点值为0的空节点，最常用最正规写法
-        ListNode *p = pHead;
-        for(int i = 0; i &lt; nums; ++i){
-            int data;
-            cin &gt;&gt; data;
-            ListNode *q = new ListNode(data);
-            p-&gt;next = q;
-            p = p-&gt;next;
-        }
-        int Kth;
-        cin &gt;&gt; Kth;
-        p = pHead;
-        if(Kth == 0)  // 边界测试
-            cout &lt;&lt; &quot;0&quot; &lt;&lt; endl;
-        else if(nums-Kth &gt;= 0){
-            for(int i = 0; i &lt;= nums-Kth; ++i)
-                p = p-&gt;next;
-            cout &lt;&lt; p-&gt;val &lt;&lt; endl;
-        }
-        else
-            cout &lt;&lt; &quot;NULL&quot; &lt;&lt; endl;
-    }
-    return 0;
-}</code></pre><hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] C++之ListNode  <a href="https://www.cnblogs.com/xiaoxue126/p/9015541.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxue126/p/9015541.html</a><br>[2] 关于malloc和sizeof的用法  <a href="https://www.cnblogs.com/shamoguzhou/p/6847577.html" target="_blank" rel="noopener">https://www.cnblogs.com/shamoguzhou/p/6847577.html</a><br>[3] ListNode list=new ListNode()  <a href="https://blog.csdn.net/woshiwangxin0/article/details/99696978" target="_blank" rel="noopener">https://blog.csdn.net/woshiwangxin0/article/details/99696978</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/14/C-%E4%B9%8BListNode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-M序列产生原理及其性质" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/">M序列产生原理及其性质</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/" class="archive-article-date">
-  	<time datetime="2020-07-07T11:18:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、m序列的简介"><a href="#一、m序列的简介" class="headerlink" title="一、m序列的简介"></a>一、m序列的简介</h2><p>1、m序列是最长线性移位寄存器序列的简称。顾名思义，m序列是由多级移位寄存器或其延迟元件通过线性反馈产生的最长的码序列。在二进制移位寄存器中，若n为移位寄存器的级数，n级移位寄存器共有 2^n  个状态，除去全0状态外还剩下 2^n-1 中状态，因此它能产生的最大长度的码序列为 2n-1 位，也就是说，一个n级线性反馈移位寄存器产生的最长周期等于  2^n-1 。在码分多址系统中主要采用两种长度的m序列：一种是周期为 2^15-1的m序列，又称短PN序列；另一种是周期为2^42-1的m序列，又称为长PN码序列。</p>
-<p>2、m序列是一种基本又典型的伪随机序列。在通信领域有着广泛的应用，如扩频通信、卫星通信的码分多址（CDMA），数字数据中的加密、加扰、同步、误码率测量等领域。</p>
-<hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] M序列产生原理及其性质  <a href="https://blog.csdn.net/weixin_45015947/article/details/89891757" target="_blank" rel="noopener">https://blog.csdn.net/weixin_45015947/article/details/89891757</a><br>[2] 基于MATLAB的m序列产生函数及其调用方法 <a href="https://blog.csdn.net/cjbct/article/details/78153616?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/cjbct/article/details/78153616?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase</a><br>[3] 在matlab中生成m序列 <a href="https://blog.csdn.net/laomai/article/details/24342493?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-14.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-14.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/laomai/article/details/24342493?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-14.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-14.nonecase</a><br>[4] [Matlab] M序列的生成，自相关和谱密度 <a href="https://blog.csdn.net/u014595019/article/details/45027383" target="_blank" rel="noopener">https://blog.csdn.net/u014595019/article/details/45027383</a><br>[5] 完整的m序列序列生成函数和调用 <a href="https://blog.csdn.net/cjbct/article/details/78155471?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/cjbct/article/details/78155471?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/07/M%E5%BA%8F%E5%88%97%E4%BA%A7%E7%94%9F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/">展开全文 >></a>
         </p>
       
 
